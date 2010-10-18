@@ -1,0 +1,26 @@
+#labels Featured,Phase-Design
+=Simulation d’une dynamique d’opinion=
+
+On souhaite simuler la dynamique d'opinion au sein d'un groupe de n agents. Au début de la simula- 
+tion, chaque agent possède son opinion propre, représentée par une valeur numérique entre 0 et 9 (affectée 
+aléatoirement). Il peut réviser son opinion initiale en tenant compte de l’opinion formulée par certains indivi- 
+dus au sein du groupe. 
+On exprime par une valeur ε (entre 1 et 5) la confiance que chaque individu a en ses voisins. Un agent 
+i prendra en compte uniquement les opinions des individus ayant une opinion proche de la sienne, dans un in- 
+tervalle [opinioni-ε, opinioni+ε]. Si ε = 1, un agent donné harmonisera son opinion avec un agent ayant une 
+opinion égale à la sienne à 1 près. 
+Les agents se déplacent de manière aléatoire dans un environnement (de dimension paramétrable par l’utili- 
+sateur). Chaque fois qu'un individu en rencontre un autre, il entame une conversation de manière à connaître 
+son opinion. Si celle ci est trop éloignée de la sienne et qu’il ne peut pas le persuader, il continue à se dépla- 
+cer de manière aléatoire. Si l'opinion de l'individu qu'il a rencontré se situe dans l'intervalle [opinioni-ε, opi- 
+nioni+ε], il le persuade (en lui attribuant son opinion) puis continue son déplacement aléatoire. Un agent étant 
+convaincu ou ayant convaincu ne peut plus communiquer pendant un certain temps.
+
+ * Les agents peuvent communiquer et persuader des agents dans une zone de perception de dimension nxn (n étant paramétrable par l’utilisateur)
+ * Les agents se déplacent de manière aléatoire par pas de 2 ou 1 (choix de l’utilisateur) 
+ * La couleur d’affichage de l’agent dépendra de son opinion (exemple : rouge pour 0, bleu pour 1, etc..) 
+ * La quantité d’individus pour chaque opinion devra  être affichée en temps réel. 
+ * On souhaite obtenir pour chaque simulation un fichier de log détaillant les opinions initiales et les données concernant les opinions toutes les 20 secondes. 
+ * L’utilisateur pourra choisir le nombre d’agents, l’indice de confiance, et les différents paramètres de la situation. 
+ * On souhaite pouvoir rejouer une simulation ayant déjà été jouée et la visualiser à nouveau (ceci nécessite de sauvegarder la totalité des déplacements et changement d’opinion réalisés par les agents) 
+ * L’interface de l’utilisateur doit permettre de visualiser dans un graphique (construit et affiché en temps-réel) la quantité d’agent pour chacune des opinions.
