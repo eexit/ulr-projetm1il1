@@ -1,184 +1,153 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulationopinion;
 
-import org.junit.Test;
+import junit.framework.TestCase;
 import static org.junit.Assert.*;
 
 /**
- *
- * @author claatik
+ * @author Joris Berthelot (joris.berthelot@gmail.com)
  */
-public class AgentTest {
+public class AgentTest extends TestCase {
 
     /**
-     * Test of getOpinion method, of class Agent.
+     * The agent working instance
      */
-    @Test
-    public void testGetOpinion() {
-        System.out.println("getOpinion");
-        Agent instance = new Agent();
-        int expResult = 0;
-        int result = instance.getOpinion();
-        assertEquals(expResult, result);
+    private static Agent instance;
+
+    /**
+     * The methode will be called before every test methode
+     */
+    @Override
+    public void setUp() {
+        instance = new Agent();
+        assertEquals(0, instance.getOpinion());
+        assertEquals(0, instance.getWaitTime());
+        assertEquals(0, instance.getTrustLevel());
+        assertEquals(0, instance.getMoveStep());
+        assertEquals(0, instance.getPerceptionDepth());
+        assertTrue(instance.getCoord() instanceof Coord);
     }
 
     /**
-     * Test of setOpinion method, of class Agent.
+     * Test of getOpinion and setOpinion methods, of class Agent.
      */
-    @Test
-    public void testSetOpinion() {
-        System.out.println("setOpinion");
-        int expResult = 2;
-        int opinion = 2;
-        Agent instance = new Agent();
-        instance.setOpinion(opinion);
-        assertEquals(expResult, instance.getOpinion());
+    public void testGetAndSetOpinion() {
+        try {
+            instance.setOpinion(2);
+            assertEquals(2, instance.getOpinion());
+        } catch (AgentException e) {
+        }
     }
 
     /**
-     * Test of getWaitTime method, of class Agent.
+     * Tests that the agent can't have an opinion value over the defined limit
      */
-    @Test
-    public void testGetWaitTime() {
-        System.out.println("getWaitTime");
-        Agent instance = new Agent();
-        int expResult = 0;
-        int result = instance.getWaitTime();
-        assertEquals(expResult, result);
+    public void testSetOpinionFailOverflowValue() {
+        try {
+            instance.setOpinion(Agent.OPINION_MAX + 10);
+            fail("AgentException thrown exception expected!");
+        } catch (AgentException e) {
+        }
     }
 
     /**
-     * Test of setWaitTime method, of class Agent.
+     * Tests that the agent can't have an opinion value under the defined limit
      */
-    @Test
-    public void testSetWaitTime() {
-        System.out.println("setWaitTime");
-        int expResult = 4;
-        int waitTime = 4;
-        Agent instance = new Agent();
-        instance.setWaitTime(waitTime);
-        assertEquals(expResult, instance.getWaitTime());
+    public void testSetOpinionFailUnderflowValue() {
+        try {
+            instance.setOpinion(Agent.OPINION_MIN - 10);
+            fail("AgentException thrown exception expected!");
+        } catch (AgentException e) {
+        }
     }
 
     /**
-     * Test of getTrustLevel method, of class Agent.
+     * Test of getWaitTime and setWaitTime methods, of class Agent.
      */
-    @Test
-    public void testGetTrustLevel() {
-        System.out.println("getTrustLevel");
-        Agent instance = new Agent();
-        int expResult = 0;
-        int result = instance.getTrustLevel();
-        assertEquals(expResult, result);
+    public void testGetAndSetWaitTime() {
+        instance.setWaitTime(4);
+        assertEquals(4, instance.getWaitTime());
     }
 
     /**
-     * Test of setTrustLevel method, of class Agent.
+     * Test of getTrustLevel and setTrustLevel methods, of class Agent.
      */
-    @Test
-    public void testSetTrustLevel() {
-        System.out.println("setTrustLevel");
-        int expResult = 3;
-        int trustLevel = 3;
-        Agent instance = new Agent();
-        instance.setTrustLevel(trustLevel);
-        assertEquals(expResult, instance.getTrustLevel());
+    public void testGetAndSetTrustLevel() {
+        try {
+            instance.setTrustLevel(3);
+            assertEquals(3, instance.getTrustLevel());
+        } catch (AgentException e) {
+        }
     }
 
     /**
-     * Test of getPerceptionDepth method, of class Agent.
+     * Tests that the agent can't have a trust level value over the defined limit
      */
-    @Test
-    public void testGetPerceptionDepth() {
-        System.out.println("getPerceptionDepth");
-        Agent instance = new Agent();
-        int expResult = 0;
-        int result = instance.getPerceptionDepth();
-        assertEquals(expResult, result);
+    public void testSetTrustLevelFailOverflowValue() {
+        try {
+            instance.setTrustLevel(Agent.TRUST_MAX + 10);
+            fail("AgentException thrown exception expected!");
+        } catch (AgentException e) {
+        }
     }
 
     /**
-     * Test of setPerceptionDepth method, of class Agent.
+     * Tests that the agent can't have a trust level value under the defined limit
      */
-    @Test
-    public void testSetPerceptionDepth() {
-        System.out.println("setPerceptionDepth");
-        int expResult = 4;
-        int perceptionDepth = 4;
-        Agent instance = new Agent();
-        instance.setPerceptionDepth(perceptionDepth);
-        assertEquals(expResult, instance.getPerceptionDepth());
+    public void testSetTrustLevelFailUnderflowValue() {
+        try {
+            instance.setTrustLevel(Agent.TRUST_MIN - 10);
+            fail("AgentException thrown exception expected!");
+        } catch (AgentException e) {
+        }
     }
 
     /**
-     * Test of getMoveStep method, of class Agent.
+     * Test of getPerceptionDepth and setPerceptionDepth methods, of class Agent.
      */
-    @Test
-    public void testGetMoveStep() {
-        System.out.println("getMoveStep");
-        Agent instance = new Agent();
-        int expResult = 0;
-        int result = instance.getMoveStep();
-        assertEquals(expResult, result);
+    public void testGetAndSetPerceptionDepth() {
+        instance.setPerceptionDepth(4);
+        assertEquals(4, instance.getPerceptionDepth());
     }
 
     /**
-     * Test of setMoveStep method, of class Agent.
+     * Test of getMoveStep and setMoveStep methods, of class Agent.
      */
-    @Test
-    public void testSetMoveStep() {
-        System.out.println("setMoveStep");
-        int expResult = 5;
-        int moveStep = 5;
-        Agent instance = new Agent();
-        instance.setMoveStep(moveStep);
-        assertEquals(expResult, instance.getMoveStep());
+    public void testGetAndSetMoveStep() {
+        try {
+            instance.setMoveStep(1);
+            assertEquals(1, instance.getMoveStep());
+        } catch (AgentException e) {
+        }
     }
 
     /**
-     * Test of getCoord method, of class Agent.
+     * Tests that the agent can't have a move step value over the defined limit
      */
-    @Test
-    public void testGetCoord() {
-        System.out.println("getCoord");
-        Agent instance = new Agent();
-        Coord expResult = new Coord();
-        Coord result = instance.getCoord();
-        assertEquals(expResult, result);
+    public void testSetMoveStepFailOverflowValue() {
+        try {
+            instance.setMoveStep(Agent.MOVE_STEP_MAX + 10);
+            fail("AgentException thrown exception expected!");
+        } catch (AgentException e) {
+        }
     }
 
     /**
-     * Test of setCoord method, of class Agent.
+     * Tests that the agent can't have a move step value under the defined limit
      */
-    @Test
-    public void testSetCoord() {
-        System.out.println("setCoord");
-        int expResultX = 3;
-        int expResultY = 2;
-        Coord c = new Coord(3, 2);
-        Agent instance = new Agent();
-        instance.setCoord(c);
-        int coordX = instance.getCoord().x();
-        int coordY = instance.getCoord().y();
-        assertEquals(expResultX, coordX);
-        assertEquals(expResultY, coordY);
+    public void testSetMoveStepFailUnderflowValue() {
+        try {
+            instance.setMoveStep(Agent.MOVE_STEP_MIN - 10);
+            fail("AgentException thrown exception expected!");
+        } catch (AgentException e) {
+        }
     }
 
     /**
-     * Test of Agent's constructor.
+     * Test of getCoord and setCoord methods, of class Agent.
      */
-    public AgentTest() {
-        System.out.println("constructor");
-        //public Agent(int trustLevel,  int moveStep, int perceptionDepth, int waitTime, Coord c)
-        Agent instance = new Agent(2, 1, 8, 3, new Coord(4, 9));
-        assertEquals(2, instance.getTrustLevel());
-        assertEquals(1, instance.getMoveStep());
-        assertEquals(8, instance.getPerceptionDepth());
-        assertEquals(3, instance.getWaitTime());
-        assertEquals(4, (int) instance.getCoord().x());
-        assertEquals(9, (int) instance.getCoord().y());
+    public void testGetandSetCoord() {
+        assertEquals(instance.getCoord(), new Coord());
+        instance.setCoord(new Coord(1, 2));
+        assertEquals(instance.getCoord(), new Coord(1, 2));
     }
 }
