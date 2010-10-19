@@ -6,15 +6,14 @@
 package simulationopinion;
 
 /**
- *
- * @author 33xiT
+ * @author Joris Berthelot (joris.berthelot@gmail.com)
  */
-public class EnvironmentException extends Exception {
-    public EnvironmentException() {
+public class AgentException extends Exception {
+    public AgentException() {
         super();
     }
-    
-    public EnvironmentException(String message) {
+
+    public AgentException(String message) {
         super(message);
     }
 }

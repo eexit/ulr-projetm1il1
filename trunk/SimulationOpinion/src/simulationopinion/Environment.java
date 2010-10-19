@@ -3,10 +3,11 @@ package simulationopinion;
 import java.util.ArrayList;
 import java.util.TreeMap;
 /** 
- * @author Joris Berthelot
+ * @author Joris Berthelot (joris.berthelot@gmail.com)
  * @author Alexandre Coste
  */
 public class Environment {
+
     /**
      * Number of agents in the environment
      */
@@ -27,6 +28,8 @@ public class Environment {
      */
     private ArrayList<Agent> listAgents;
 
+    private boolean running;
+
     /**
      * Constructor
      */
@@ -35,6 +38,11 @@ public class Environment {
         this.areaSize = 0;
         this.listAgentsToOpinion = new TreeMap<Integer, ArrayList<Agent>>();
         this.listAgents = new ArrayList<Agent>();
+        this.running = false;
+
+        for (int i = 0; i < Agent.OPINION_MAX; i++) {
+            this.listAgentsToOpinion.put(i, new ArrayList<Agent>());
+        }
     }
 
     /**
@@ -96,6 +104,7 @@ public class Environment {
                 a.getCoord().y() <= bottomRight.y() &&
                 !a.equals(agent)) {
                 nearAgents.add(a);
+                // this.getListAgentsToOpinion().get(a.getOpinion()).remove(a);
             }
         }
         return nearAgents;
@@ -105,7 +114,21 @@ public class Environment {
      * Runs the environment, move agents
      */
     public void run() throws EnvironmentException {
-        throw new EnvironmentException("Not yet implemented!");
+        if (1 > this.getNbAgent()) {
+            throw new EnvironmentException("Can't run environment without any agent...");
+        }
+        
+        this.running = true;
+
+        while (this.isRunning()) {
+            for (Agent agent : this.getListAgents()) {
+                ArrayList<Agent> nearby = this.getNearAgents(agent);
+                // agent.move();
+                
+                // agent.persuade(this.getNearAgents(agent));
+                
+            }
+        }
     }
 
     /**
@@ -113,13 +136,6 @@ public class Environment {
      */
     public int getNbAgent() {
         return nbAgent;
-    }
-
-    /**
-     * @param nbAgent the nbAgent to set
-     */
-    public void setNbAgent(int nbAgent) {
-        this.nbAgent = nbAgent;
     }
 
     /**
@@ -144,13 +160,6 @@ public class Environment {
     }
 
     /**
-     * @param listAgentsToOpinion the listAgentsToOpinion to set
-     */
-    public void setListAgentsToOpinion(TreeMap<Integer, ArrayList<Agent>> listAgentsToOpinion) {
-        this.listAgentsToOpinion = listAgentsToOpinion;
-    }
-
-    /**
      * @return the listAgents
      */
     public ArrayList<Agent> getListAgents() {
@@ -162,6 +171,18 @@ public class Environment {
      */
     public void setListAgents(ArrayList<Agent> listAgents) {
         this.listAgents = listAgents;
-        this.setNbAgent(listAgents.size());
+        this.nbAgent = listAgents.size();
+
+        for (Agent agent : listAgents) {
+            ArrayList<Agent> list = this.listAgentsToOpinion.put(agent.getOpinion(), this.listAgentsToOpinion.get(agent.getOpinion()));
+            list.add(agent);
+        }
+    }
+
+    /**
+     * @return the running
+     */
+    public boolean isRunning() {
+        return running;
     }
 }

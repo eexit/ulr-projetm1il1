@@ -11,9 +11,11 @@
 package simulationopinion;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -29,34 +31,17 @@ public class DisplayManagement extends javax.swing.JFrame {
     private DefaultPieDataset data;
     private String pathSave;
     private TreeMap <Integer,Color> listColorToOpinion;
+    private ArrayList<JLabel> listLabel;
 
     /** Creates new form DisplayManagement */
-    public DisplayManagement() {
+    public DisplayManagement(ArrayList<Agent> listAgent) {
         initComponents();
         this.setVisible(false);
         this.InitialisationColor();
+        this.InitialisationPiePlot();
         jFrameWelcome.setVisible(true);
-        data = new DefaultPieDataset();
-        data.setValue("Opinion 1", 11.1);
-        data.setValue("Opinion 2", 11.1);
-        data.setValue("Opinion 3", 11.1);
-        data.setValue("Opinion 4", 11.1);
-        data.setValue("Opinion 5", 11.1);
-        data.setValue("Opinion 6", 11.1);
-        data.setValue("Opinion 7", 11.1);
-        data.setValue("Opinion 8", 11.1);
-        data.setValue("Opinion 9", 11.1);
-        JFreeChart g = ChartFactory.createPieChart3D("Représentation graphique du nombre de personnes par opinions", data, true, true, false);
-        ChartPanel c = new ChartPanel(g);
-        PiePlot3D plot = (PiePlot3D) g.getPlot();
-        plot.setForegroundAlpha((float) 0.6);
-        for(Map.Entry<Integer,Color> e:listColorToOpinion.entrySet()){
-            plot.setSectionPaint("Opinion "+e.getKey(), e.getValue());}
-
-        //getContentPane().add(jPanelGraph);
-        BoxLayout Box = new BoxLayout(jPanelGraph, BoxLayout.PAGE_AXIS);
-        jPanelGraph.setLayout(Box);
-        this.jPanelGraph.add(c);
+        DisplayEnvironment e= new DisplayEnvironment(listAgent, listColorToOpinion);
+        e.paint(null);// A REVOIR
     }
 
     /** This method is called from within the constructor to
@@ -78,6 +63,53 @@ public class DisplayManagement extends javax.swing.JFrame {
         listColorToOpinion.put(9,Color.CYAN);
     }
 
+    private void InitialisationPiePlot(){
+        data = new DefaultPieDataset();
+        data.setValue("Opinion 1", 11.1);
+        data.setValue("Opinion 2", 11.1);
+        data.setValue("Opinion 3", 11.1);
+        data.setValue("Opinion 4", 11.1);
+        data.setValue("Opinion 5", 11.1);
+        data.setValue("Opinion 6", 11.1);
+        data.setValue("Opinion 7", 11.1);
+        data.setValue("Opinion 8", 11.1);
+        data.setValue("Opinion 9", 11.1);
+        JFreeChart g = ChartFactory.createPieChart3D("Représentation graphique du nombre de personnes par opinions", data, true, true, false);
+        ChartPanel c = new ChartPanel(g);
+        PiePlot3D plot = (PiePlot3D) g.getPlot();
+        plot.setForegroundAlpha((float) 0.6);
+        for(Map.Entry<Integer,Color> e:listColorToOpinion.entrySet()){
+            plot.setSectionPaint("Opinion "+e.getKey(), e.getValue());}
+        BoxLayout Box = new BoxLayout(jPanelGraph, BoxLayout.PAGE_AXIS);
+        jPanelGraph.setLayout(Box);
+        this.jPanelGraph.add(c);
+    }
+
+    private void modificationPiePlot(float o1,float o2,float o3,float o4,float o5,float o6,float o7,float o8,float o9){
+        data.setValue("Opinion 1", o1);
+        data.setValue("Opinion 2", o2);
+        data.setValue("Opinion 3", o3);
+        data.setValue("Opinion 4", o4);
+        data.setValue("Opinion 5", o5);
+        data.setValue("Opinion 6", o6);
+        data.setValue("Opinion 7", o7);
+        data.setValue("Opinion 8", o8);
+        data.setValue("Opinion 9", o9);
+    }
+
+
+
+    private void update(TreeMap<Integer,ArrayList<Agent>> listAgentToOpinion){
+        int nb;
+        for(Map.Entry<Integer,ArrayList<Agent>> e :listAgentToOpinion.entrySet() ){
+            nb=e.getValue().size();
+
+        }
+    }
+
+    private double percent(float nb, float total){
+        return nb*100/total;
+    }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
