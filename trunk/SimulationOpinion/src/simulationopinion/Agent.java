@@ -1,72 +1,79 @@
 package simulationopinion;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
+import java.util.TreeMap;
 
 /**
  * @author claatik
  * @author Joris Berthelot (joris.berthelot@gmail.com)
  * @version 1.00
  */
-public class Agent {
+public class Agent implements Comparable {
+
     /**
      * Mininal value of opinion
      */
     public final static int OPINION_MIN = 0;
-
     /**
      * Maximal value of opinion
      */
     public final static int OPINION_MAX = 9;
-
     /**
      * Minimal value of trust level
      */
     public final static int TRUST_MIN = 0;
-
     /**
      * Maximal value of trust level
      */
     public final static int TRUST_MAX = 5;
-
     /**
      * Minimal value of move step
      */
     public final static int MOVE_STEP_MIN = 1;
-
     /**
      * Maximal value of move step
      */
     public final static int MOVE_STEP_MAX = 2;
-
+    /**
+     * The total number of components.
+     * Initialized to 0, it is incremented by the constructor,
+     * and used to inialize the identifier.
+     */
+    protected static int count = 0;
+    /**
+     * Unique identifier of agent
+     */
+    private final int ident;
     /**
      * Agent opinion value
      */
     private int opinion;
-
     /**
      * Agent wait time before being back active
      */
     private int waitTime;
-
     /**
      * Agent trust level
      */
     private int trustLevel;
-
     /**
      * Agent perception depth
      */
     private int perceptionDepth;
-
     /**
      * Agent moving step
      */
     private int moveStep;
-
     /**
      * Agent current coord
      */
     private Coord coord;
+    /**
+     * List of agents doesn't speak with the time off
+     */
+    private TreeMap<Agent, Long> listAgentNotSpeak;
 
     /**
      * Constructor
@@ -74,11 +81,12 @@ public class Agent {
     public Agent() {
         this.opinion = 0;
         this.waitTime = 0;
-        this.trustLevel = 0;
+        this.trustLevel = 1;
         this.perceptionDepth = 0;
-        this.moveStep = 0;
+        this.moveStep = 1;
         this.coord = new Coord();
-
+        this.listAgentNotSpeak = new TreeMap<Agent, Long>();
+        this.ident = ++count;
     }
 
     /** Constructor with parameters
@@ -92,15 +100,72 @@ public class Agent {
     public Agent(int trustLevel, int moveStep, int perceptionDepth, int waitTime, Coord c) throws AgentException {
         this();
         try {
-            this.setOpinion(new Random().nextInt(Agent.OPINION_MAX));
+            this.setOpinion(new Random().nextInt(Agent.OPINION_MAX + 1));
             this.setTrustLevel(trustLevel);
             this.perceptionDepth = perceptionDepth;
             this.moveStep = moveStep;
             this.waitTime = waitTime;
             this.coord = c;
+            this.listAgentNotSpeak = new TreeMap<Agent, Long>();
         } catch (AgentException e) {
             throw e;
         }
+    }
+
+    public void move(int areaSize) throws AgentException {
+        if (areaSize <= 0) {
+            throw new AgentException("AreaSize must be positive and not equal to zero");
+        }
+        ArrayList<Coord> listMovePossible = new ArrayList<Coord>();
+        if ((this.getCoord().x() - this.getMoveStep()) > 0) {
+            listMovePossible.add(new Coord(this.getCoord().x() - this.getMoveStep(), this.getCoord().y())); //Déplacement vers le haut
+            if ((this.getCoord().y() - this.getMoveStep()) > 0) {
+                listMovePossible.add(new Coord(this.getCoord().x() - this.getMoveStep(), this.getCoord().y() - this.getMoveStep())); //Déplacement vers le haut gauche
+            }
+            if ((this.getCoord().y() + this.getMoveStep()) < areaSize) {
+                listMovePossible.add(new Coord(this.getCoord().x() - this.getMoveStep(), this.getCoord().y() + this.getMoveStep())); // Déplacement vers le haut droit
+            }
+        }
+        if ((this.getCoord().x() + this.getMoveStep()) < areaSize) {
+            listMovePossible.add(new Coord(this.getCoord().x() + this.getMoveStep(), this.getCoord().y())); //Déplacement vers le bas
+            if ((this.getCoord().y() - this.getMoveStep()) > 0) {
+                listMovePossible.add(new Coord(this.getCoord().x() + this.getMoveStep(), this.getCoord().y() - this.getMoveStep())); //Déplacement vers le bas gauche
+            }
+            if ((this.getCoord().y() + this.getMoveStep()) < areaSize) {
+                listMovePossible.add(new Coord(this.getCoord().x() + this.getMoveStep(), this.getCoord().y() + this.getMoveStep())); //Déplacement vers le bas droit
+            }
+        }
+        if ((this.getCoord().y() - this.getMoveStep()) > 0) {
+            listMovePossible.add(new Coord(this.getCoord().x(), this.getCoord().y() - this.getMoveStep())); //Déplacement vers la gauche
+        }
+        if ((this.getCoord().y() + this.getMoveStep()) < areaSize) {
+            listMovePossible.add(new Coord(this.getCoord().x(), this.getCoord().y() + this.getMoveStep())); //Déplacement vers la droite
+        }
+
+        int direction = new Random().nextInt(listMovePossible.size());
+        this.setCoord(listMovePossible.get(direction));
+    }
+
+    public void persuade(ArrayList<Agent> listNearAgent) throws AgentException {
+        TreeMap<Agent, Long> tm = new TreeMap<Agent, Long>(this.listAgentNotSpeak);
+        for (Map.Entry<Agent, Long> e : this.listAgentNotSpeak.entrySet()) {
+            if (e.getValue() > System.currentTimeMillis()) {
+                tm.remove(e.getKey());
+            }
+        }
+        this.listAgentNotSpeak = tm;
+        for (Agent a : listNearAgent) {
+            if (a.getOpinion() - a.getTrustLevel() <= this.getOpinion() && a.getOpinion() + a.getTrustLevel() >= this.getOpinion() && !this.listAgentNotSpeak.containsKey(a)) {
+                a.setOpinion(this.getOpinion());
+                long waitOffTime = System.currentTimeMillis() + (this.getWaitTime() * 1000);
+                this.addToListAgentNotSpeak(a, waitOffTime);
+                a.addToListAgentNotSpeak(this, waitOffTime);
+            }
+        }
+    }
+
+    public void addToListAgentNotSpeak(Agent a, long waitOffTime) {
+        this.listAgentNotSpeak.put(a, waitOffTime);
     }
 
     /**
@@ -198,5 +263,23 @@ public class Agent {
      */
     public void setCoord(Coord c) {
         this.coord = c;
+    }
+
+    /**
+     * @return the ident
+     */
+    public int getIdent() {
+        return ident;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Agent a = (Agent)o;
+        if(this.getIdent() < a.getIdent())
+            return -1;
+        else if(this.getIdent() > a.getIdent())
+            return 1;
+        else
+            return 0;
     }
 }

@@ -19,6 +19,7 @@ public class DisplayEnvironment extends JPanel {
     private ArrayList<Agent> listAgent;
     private TreeMap<Integer,Color> listColorToOpinion;
     public DisplayEnvironment(ArrayList<Agent> listAgent, TreeMap<Integer,Color> listColorToOpinion){
+        super();
         this.listAgent = listAgent;
         this.listColorToOpinion = listColorToOpinion;
     }
@@ -29,6 +30,8 @@ public class DisplayEnvironment extends JPanel {
             s.setColor(this.listColorToOpinion.get(a.getOpinion()));
             s.fillOval(a.getCoord().x(), a.getCoord().y(), 5, 5);
         }
+        s.setColor(Color.BLACK);
+        s.drawOval(10, 10, 10, 10);
     }
 
 }
