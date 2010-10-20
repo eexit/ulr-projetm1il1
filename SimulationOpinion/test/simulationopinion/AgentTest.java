@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import junit.framework.TestCase;
-import static org.junit.Assert.*;
 
 /**
  * @author Joris Berthelot (joris.berthelot@gmail.com)
