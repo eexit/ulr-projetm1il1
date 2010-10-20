@@ -13,28 +13,33 @@ import static org.junit.Assert.*;
  */
 public class CoordTest {
 
+    private static Coord instance;
+
     /**
-     * Test of x method, of class Coord.
+     * The methode will be called before every test methode
+     */
+    public void setUp() {
+        instance = new Coord();
+        assertEquals(0, instance.x());
+        assertEquals(0, instance.y());
+    }
+
+     /**
+     * Test of x and setX methods, of class Coord.
      */
     @Test
-    public void testX() {
-        System.out.println("X");
-        Coord instance = new Coord();
-        int expResult = 0;
-        int result = instance.x();
-        assertEquals(expResult, result);
+    public void testGetAndSetX() {
+        instance.setX(3);
+        assertEquals(3, instance.x());
     }
 
     /**
-     * Test of y method, of class Coord.
+     * Test of y and setY methods, of class Coord.
      */
     @Test
-    public void testY() {
-        System.out.println("Y");
-        Coord instance = new Coord();
-        int expResult = 0;
-        int result = instance.y();
-        assertEquals(expResult, result);
+    public void testGetAndSetY() {
+        instance.setY(2);
+        assertEquals(2, instance.y());
     }
 
     /**
@@ -42,35 +47,10 @@ public class CoordTest {
      */
     @Test
     public void testSetCoord() {
-        System.out.println("setCoord");
-        Coord c = new Coord(5, 9);
-        Coord instance = new Coord();
-        instance.setCoord(c);
+        instance.setCoord(new Coord(5, 9));
         assertEquals(5, instance.x());
         assertEquals(9, instance.y());
     }
 
-    /**
-     * Test of setX method, of class Coord.
-     */
-    @Test
-    public void testSetX() {
-        System.out.println("setX");
-        int x = 3;
-        Coord instance = new Coord();
-        instance.setX(x);
-        assertEquals(3, instance.x());
-    }
-
-    /**
-     * Test of setY method, of class Coord.
-     */
-    @Test
-    public void testSetY() {
-        System.out.println("setY");
-        int y = 2;
-        Coord instance = new Coord();
-        instance.setY(y);
-        assertEquals(2, instance.y());
-    }
+   
 }

@@ -1,5 +1,8 @@
 package simulationopinion;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import junit.framework.TestCase;
 import static org.junit.Assert.*;
 
@@ -21,10 +24,44 @@ public class AgentTest extends TestCase {
         instance = new Agent();
         assertEquals(0, instance.getOpinion());
         assertEquals(0, instance.getWaitTime());
-        assertEquals(0, instance.getTrustLevel());
-        assertEquals(0, instance.getMoveStep());
+        assertEquals(1, instance.getTrustLevel());
+        assertEquals(1, instance.getMoveStep());
         assertEquals(0, instance.getPerceptionDepth());
         assertTrue(instance.getCoord() instanceof Coord);
+    }
+
+    public void testMove() {
+        try {
+            instance.move(12);
+            if(instance.getCoord().x() == 0 && instance.getCoord().y() == 0)
+                fail("Agent don't move");
+        } catch (AgentException ex) {
+        }
+
+    }
+
+    public void testMoveFail() {
+        try {
+            instance.move(-2);
+            fail("AgentException thrown exception expected!");
+        } catch (AgentException ex) {
+        }
+
+    }
+
+    public void testPersuade(){
+        try {
+            Agent a1 = new Agent(5, 1, 5, 5, new Coord(1, 1));
+            a1.setOpinion(1);
+            Agent a2 = new Agent(5, 1, 5, 5, new Coord(1, 2));
+            a2.setOpinion(2);
+            ArrayList<Agent> listAgent = new ArrayList<Agent>();
+            listAgent.add(a2);
+            a1.persuade(listAgent);
+            assertEquals(a1.getOpinion(), a2.getOpinion());
+        } catch (AgentException ex) {
+            Logger.getLogger(AgentTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
