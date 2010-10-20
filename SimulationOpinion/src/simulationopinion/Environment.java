@@ -19,7 +19,7 @@ public class Environment {
     private int areaSize;
 
     /**
-     * Amount of agent per opinion
+     * Agent allocation for each opinion level
      */
     private TreeMap<Integer, ArrayList<Agent>> listAgentsToOpinion;
 
@@ -40,15 +40,15 @@ public class Environment {
         this.listAgents = new ArrayList<Agent>();
         this.running = false;
 
-        for (int i = 0; i < Agent.OPINION_MAX; i++) {
+        for (int i = Agent.OPINION_MIN; i < Agent.OPINION_MAX; i++) {
             this.listAgentsToOpinion.put(i, new ArrayList<Agent>());
         }
     }
 
     /**
-     * Gets a list of agent near to given agent
+     * Returns an agent list which are near to the given agent
      * @param agent
-     * @return
+     * @return nearAgents
      */
     public ArrayList<Agent> getNearAgents(Agent agent) {
         ArrayList<Agent> nearAgents = new ArrayList<Agent>();
@@ -104,82 +104,113 @@ public class Environment {
                 a.getCoord().y() <= bottomRight.y() &&
                 !a.equals(agent)) {
                 nearAgents.add(a);
-                // this.getListAgentsToOpinion().get(a.getOpinion()).remove(a);
+                this.getListAgentsToOpinion().get(a.getOpinion()).remove(a);
             }
         }
         return nearAgents;
     }
 
     /**
+     * Class runner (main thread)
      * Runs the environment, move agents
+     * TODO Implements agent actions
+     * FIXME Stop condition to break out the while()
      */
     public void run() throws EnvironmentException {
-        if (1 > this.getNbAgent()) {
-            throw new EnvironmentException("Can't run environment without any agent...");
+        if (2 > this.getNbAgent()) {
+            throw new EnvironmentException("Two agent at least are needed to make the environment running!");
         }
-        
         this.running = true;
 
         while (this.isRunning()) {
             for (Agent agent : this.getListAgents()) {
                 ArrayList<Agent> nearby = this.getNearAgents(agent);
                 // agent.move();
-                
-                // agent.persuade(this.getNearAgents(agent));
-                
+                // agent.persuade(nearby);
+                this.updateListAgents(nearby);
             }
         }
     }
 
     /**
-     * @return the nbAgent
+     * Stop the execution of the environment
+     */
+    public void stop() {
+        this.running = false;
+    }
+
+    /**
+     * Returns the number of working agent
+     * @return nbAgent
      */
     public int getNbAgent() {
         return nbAgent;
     }
 
     /**
-     * @return the areaSize
+     * Returns the agent moving field size
+     * @return areaSize
      */
     public int getAreaSize() {
         return areaSize;
     }
 
     /**
-     * @param areaSize the areaSize to set
+     * Sets the agent moving field size
+     * @param areaSize
      */
     public void setAreaSize(int areaSize) {
         this.areaSize = areaSize;
     }
 
     /**
-     * @return the listAgentsToOpinion
+     * Returns the current agent allocation for each opinion level
+     * @return listAgentsToOpinion
      */
     public TreeMap<Integer, ArrayList<Agent>> getListAgentsToOpinion() {
         return listAgentsToOpinion;
     }
 
     /**
-     * @return the listAgents
+     * Returns the current agent list
+     * @return listAgents
      */
     public ArrayList<Agent> getListAgents() {
         return listAgents;
     }
 
     /**
-     * @param listAgents the listAgents to set
+     * Sets a new list of agents
+     * @param listAgents
      */
     public void setListAgents(ArrayList<Agent> listAgents) {
         this.listAgents = listAgents;
         this.nbAgent = listAgents.size();
 
         for (Agent agent : listAgents) {
-            ArrayList<Agent> list = this.listAgentsToOpinion.put(agent.getOpinion(), this.listAgentsToOpinion.get(agent.getOpinion()));
-            list.add(agent);
+            ArrayList<Agent> opinionlist = this.listAgentsToOpinion.put(agent.getOpinion(), this.listAgentsToOpinion.get(agent.getOpinion()));
+            opinionlist.add(agent);
         }
     }
 
     /**
+     * Updates agent list
+     * Agents contained in the list must be agent extracted agents from initial agent set
+     * @param listAgents
+     * @throws EnvironmentException
+     */
+    public void updateListAgents(ArrayList<Agent> listAgents) throws EnvironmentException {
+        for (Agent agent : listAgents) {
+            if (!this.getListAgents().contains(agent)) {
+                throw new EnvironmentException("Unexpected agent found! Check out for any intruder! Agent: " + agent);
+            }
+            ArrayList<Agent> opinionlist = this.listAgentsToOpinion.get(agent.getOpinion());
+            opinionlist.add(agent);
+        }
+    }
+
+    /**
+     * Returns the state of Environment
      * @return the running
      */
     public boolean isRunning() {
