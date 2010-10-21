@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulationopinion;
 
 import java.io.File;
@@ -12,37 +8,41 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- *
  * @author Teddie
  * @author Chama
+ * @review Joris Berthelot
  */
 public class LogManagement {
 
-    public File filename;
+    /**
+     * Default log filename
+     */
+    public final static String LOG_FILENAME = "opinion_log";
+    /**
+     * Log filename
+     */
+    private File filename;
 
-    //Constructeur
-    public LogManagement() {
-        try {
-            //Create File
-            filename = new File("log");
-            if (filename.exists()) {
-                filename.delete();
-                filename.createNewFile();
-            } else {
-                filename.createNewFile();
-            }
-        } catch (IOException e) {
-            System.out.println(e.toString());
+    /**
+     * Constructor
+     * @throws IOException
+     */
+    public LogManagement() throws IOException {
+        this.filename = new File(LogManagement.LOG_FILENAME);
+        if (this.filename.exists()) {
+            this.filename.delete();
         }
+        this.filename.createNewFile();
     }
 
     /**
-     * @author chama
-     * @author Teddie
-     **/
+     * Log data saver
+     * @param saveOpinion
+     * @throws IOException
+     */
     public void saveData(TreeMap<Integer, ArrayList> saveOpinion) throws IOException {
         int max = 0;
-        FileWriter fw = new FileWriter(filename, true);
+        FileWriter fw = new FileWriter(this.filename, true);
         for (Map.Entry<Integer, ArrayList> e : saveOpinion.entrySet()) {
             //Write Key
             max = Math.max(max, e.getValue().size());
@@ -50,7 +50,7 @@ public class LogManagement {
             //Write Value
             for (Object o : e.getValue()) {
                 Agent a = (Agent) o;
-                fw.write("_"+ a.getIdent());
+                fw.write("_" + a.getIdent());
             }
             fw.write("\n");
         }
@@ -62,6 +62,4 @@ public class LogManagement {
         fw.write("\n");
         fw.close();
     }
-
-   
 }

@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package simulationopinion;
 
 import java.io.BufferedReader;
@@ -15,26 +10,31 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- *
- * @author Alex
+ * @author Alexandre Coste
+ * @review Joris Berthelot
  */
 public class SaveManagement {
+
     /**
-     * simulation filename
+     * Save filename
      */
     private String filename;
 
     /**
-     * constructor
+     * Class constructor
      */
-    public SaveManagement(String fileName){
-        this.filename=fileName;
+    public SaveManagement(String fileName) {
+        this.filename = fileName;
     }
 
-    /*
+    /**
+     * Loads a saved application log
      * @param filename
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws AgentException
      */
-    void load(String filename) throws FileNotFoundException, IOException, AgentException{
+    public void load(String filename) throws FileNotFoundException, IOException, AgentException {
         FileInputStream file = new FileInputStream(filename);
         InputStreamReader input = new InputStreamReader(file);
         BufferedReader buffer = new BufferedReader(input);
@@ -51,91 +51,101 @@ public class SaveManagement {
         /*Agent*/
         line = buffer.readLine();
         contentSort = line.split(" ");
-        for(int i= 0;i<contentSort[0].length()-6;i++){
+        for (int i = 0; i < contentSort[0].length() - 6; i++) {
             String[] agents = contentSort[i].split(";");
             a.add(new Agent(Integer.parseInt(agents[0]),
                     Integer.parseInt(agents[1]),
                     Integer.parseInt(agents[2]),
                     Integer.parseInt(agents[3]),
-                    new Coord(Integer.parseInt(agents[4]),Integer.parseInt(agents[5]))
-                    ));
+                    new Coord(Integer.parseInt(agents[4]), Integer.parseInt(agents[5]))));
         }
         e.setListAgents(a);
 
         /*action*/
-        while ((line = buffer.readLine())!=null){
+        while ((line = buffer.readLine()) != null) {
             String[] action = line.split(" ");
             ArrayList<Agent> agents = e.getListAgents();
+            // TODO replace by a switch
             /*move*/
-            if(action[0].equals("M")){                
-                agents.get(Integer.parseInt(action[1])-1).setCoord(new Coord(Integer.parseInt(action[2]),Integer.parseInt(action[3])));
+            if (action[0].equals("M")) {
+                agents.get(Integer.parseInt(action[1]) - 1).setCoord(new Coord(Integer.parseInt(action[2]), Integer.parseInt(action[3])));
             }
             /*persuade*/
-            if(action[0].equals("P")){
-                agents.get(Integer.parseInt(action[1])-1).setOpinion(Integer.parseInt(action[2]));
+            if (action[0].equals("P")) {
+                agents.get(Integer.parseInt(action[1]) - 1).setOpinion(Integer.parseInt(action[2]));
             }
         }
         input.close();
     }
 
-    /*
+    /**
+     * Saves data into the file (append mod)
      * @param attribute
+     * @throws FileNotFoundException
+     * @throws IOException
      */
-    void save(String attribute) throws FileNotFoundException, IOException{
-        FileWriter file = new FileWriter(this.getFilename(),true);
+    public void save(String attribute) throws FileNotFoundException, IOException {
+        FileWriter file = new FileWriter(this.getFilename(), true);
         BufferedWriter output = new BufferedWriter(file);
-        output.write(attribute+"\n");
+        output.write(attribute + "\n");
         output.flush();
         output.close();
     }
 
-    /*
+    /**
+     * Formats extracted data from agent list and saves it
      * @param a
+     * @throws IOException
      */
-    void saveAgent(ArrayList<Agent> a) throws IOException{
-        String listAgent = "";
-        for(int i=0;i<a.size();i++){
-            listAgent+=a.get(i).getTrustLevel()+";"
-                    +a.get(i).getMoveStep()+";"
-                    +a.get(i).getPerceptionDepth()+";"
-                    +a.get(i).getWaitTime()+";"
-                    +a.get(i).getCoord().x()+";"
-                    +a.get(i).getCoord().y()+" ";
-    
+    public void saveAgent(ArrayList<Agent> a) throws IOException {
+        String listAgent = new String();
+        for (int i = 0; i < a.size(); i++) {
+            listAgent += a.get(i).getTrustLevel() + ";"
+                + a.get(i).getMoveStep() + ";"
+                + a.get(i).getPerceptionDepth() + ";"
+                + a.get(i).getWaitTime() + ";"
+                + a.get(i).getCoord().x() + ";"
+                + a.get(i).getCoord().y() + " ";
         }
         this.save(listAgent);
     }
 
-    /*
+    /**
+     * Saves agent move data
      * @param a
+     * @throws IOException
      */
-    void saveMove(Agent a) throws IOException{
+    public void saveMove(Agent a) throws IOException {
         String move = "M ";
-        move +=a.getIdent()+" "
-                +a.getCoord().x()+" "
-                +a.getCoord().y();
+        move += a.getIdent() + " "
+                + a.getCoord().x() + " "
+                + a.getCoord().y();
         this.save(move);
     }
 
-    /*
+    /**
+     * Saves agent persuasion value
      * @param a
+     * @throws IOException
      */
-    void savePersuade(Agent a) throws IOException{
+    public void savePersuade(Agent a) throws IOException {
         String persuade = "P ";
-        persuade +=a.getIdent()+" "
-                +a.getOpinion();
+        persuade += a.getIdent() + " "
+                + a.getOpinion();
         this.save(persuade);
     }
 
     /**
-     * @return the filename
+     * Gets the filename
+     * @return
      */
     public String getFilename() {
         return filename;
     }
 
     /**
-     * @param filename the filename to set
+     * Sets the filename
+     * @param filename
      */
     public void setFilename(String filename) {
         this.filename = filename;
