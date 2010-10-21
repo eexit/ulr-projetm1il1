@@ -226,8 +226,9 @@ public class DisplayManagement extends javax.swing.JFrame {
 
         jFrameWelcome.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrameWelcome.setTitle("Bienvenue");
-        jFrameWelcome.setMinimumSize(new java.awt.Dimension(550, 375));
+        jFrameWelcome.setMinimumSize(new java.awt.Dimension(600, 375));
         jFrameWelcome.setName("Welcome"); // NOI18N
+        jFrameWelcome.setResizable(false);
 
         jLabelInfo.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabelInfo.setText("Choix des paramètres de la simulation");
