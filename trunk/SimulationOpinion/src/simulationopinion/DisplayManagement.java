@@ -10,10 +10,8 @@
  */
 package simulationopinion;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -65,6 +63,8 @@ public class DisplayManagement extends javax.swing.JFrame {
         this.UpdateLabelSlide(jSliderArea, jLabelSliderArea);
         this.UpdateLabelSlide(jSliderStep, jLabelSliderStep);
         this.UpdateLabelSlide(jSliderWaitTime, jLabelSliderWaitTime);
+        this.UpdateLabelSlide(jSliderTrust, jLabelSliderTrust);
+
     }
 
     /** This method is called from within the constructor to
@@ -190,6 +190,7 @@ public class DisplayManagement extends javax.swing.JFrame {
         jSliderWaitTime = new javax.swing.JSlider();
         jLabelSliderWaitTime = new javax.swing.JLabel();
         jSliderTrust = new javax.swing.JSlider();
+        jLabelSliderTrust = new javax.swing.JLabel();
         jFileChooserSave = new javax.swing.JFileChooser();
         jFileChooserOpen = new javax.swing.JFileChooser();
         jPanelGraph = new javax.swing.JPanel();
@@ -359,6 +360,21 @@ public class DisplayManagement extends javax.swing.JFrame {
         jSliderTrust.setMaximum(5);
         jSliderTrust.setMinimum(1);
         jSliderTrust.setValue(3);
+        jSliderTrust.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSliderTrustMouseClicked(evt);
+            }
+        });
+        jSliderTrust.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jSliderTrustMouseDragged(evt);
+            }
+        });
+        jSliderTrust.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jSliderTrustKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jFrameWelcomeLayout = new javax.swing.GroupLayout(jFrameWelcome.getContentPane());
         jFrameWelcome.getContentPane().setLayout(jFrameWelcomeLayout);
@@ -367,7 +383,7 @@ public class DisplayManagement extends javax.swing.JFrame {
             .addGroup(jFrameWelcomeLayout.createSequentialGroup()
                 .addGap(154, 154, 154)
                 .addComponent(jLabelInfo)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameWelcomeLayout.createSequentialGroup()
                 .addGroup(jFrameWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jFrameWelcomeLayout.createSequentialGroup()
@@ -399,15 +415,20 @@ public class DisplayManagement extends javax.swing.JFrame {
                             .addComponent(jSliderNbAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSliderWaitTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSliderTrust, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jFrameWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jFrameWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabelSlideNbAgent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelSliderStep, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelSliderDImEnv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelSliderArea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabelSliderWaitTime))
-                .addGap(72, 72, 72))
+                    .addGroup(jFrameWelcomeLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jFrameWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jFrameWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabelSlideNbAgent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelSliderStep, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelSliderDImEnv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelSliderArea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabelSliderWaitTime)))
+                    .addGroup(jFrameWelcomeLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabelSliderTrust)))
+                .addGap(64, 64, 64))
         );
         jFrameWelcomeLayout.setVerticalGroup(
             jFrameWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,7 +466,8 @@ public class DisplayManagement extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jFrameWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelTrust)
-                                    .addComponent(jSliderTrust, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jSliderTrust, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelSliderTrust))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                                 .addGroup(jFrameWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jCheckBoxSave)
@@ -465,7 +487,7 @@ public class DisplayManagement extends javax.swing.JFrame {
         jPanelGraph.setLayout(jPanelGraphLayout);
         jPanelGraphLayout.setHorizontalGroup(
             jPanelGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+            .addGap(0, 596, Short.MAX_VALUE)
         );
         jPanelGraphLayout.setVerticalGroup(
             jPanelGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -626,7 +648,7 @@ public class DisplayManagement extends javax.swing.JFrame {
         );
         jInternalFrameDisplayLayout.setVerticalGroup(
             jInternalFrameDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
+            .addGap(0, 402, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -655,7 +677,7 @@ public class DisplayManagement extends javax.swing.JFrame {
                         .addComponent(jPanelStat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jInternalFrameDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                         .addComponent(jPanelAction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -747,6 +769,19 @@ public class DisplayManagement extends javax.swing.JFrame {
     private void jSliderWaitTimeMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderWaitTimeMouseDragged
         this.UpdateLabelSlide(jSliderWaitTime, jLabelSliderWaitTime);
     }//GEN-LAST:event_jSliderWaitTimeMouseDragged
+
+    private void jSliderTrustKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSliderTrustKeyPressed
+        this.UpdateLabelSlide(jSliderTrust, jLabelSliderTrust);
+    }//GEN-LAST:event_jSliderTrustKeyPressed
+
+    private void jSliderTrustMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderTrustMouseClicked
+        this.UpdateLabelSlide(jSliderTrust, jLabelSliderTrust);
+    }//GEN-LAST:event_jSliderTrustMouseClicked
+
+    private void jSliderTrustMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderTrustMouseDragged
+       this.UpdateLabelSlide(jSliderTrust, jLabelSliderTrust);
+    }//GEN-LAST:event_jSliderTrustMouseDragged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLoad1;
     private javax.swing.JButton jButtonOk;
@@ -788,6 +823,7 @@ public class DisplayManagement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSliderArea;
     private javax.swing.JLabel jLabelSliderDImEnv;
     private javax.swing.JLabel jLabelSliderStep;
+    private javax.swing.JLabel jLabelSliderTrust;
     private javax.swing.JLabel jLabelSliderWaitTime;
     private javax.swing.JLabel jLabelTrust;
     private javax.swing.JLabel jLabelWaitTime;
