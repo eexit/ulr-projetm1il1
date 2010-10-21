@@ -18,7 +18,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                   <Component id="jLabelInfo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="151" max="32767" attributes="0"/>
+                  <EmptySpace pref="186" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -59,17 +59,25 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabelSlideNbAgent" alignment="1" max="32767" attributes="1"/>
-                          <Component id="jLabelSliderStep" alignment="1" max="32767" attributes="1"/>
-                          <Component id="jLabelSliderDImEnv" alignment="1" max="32767" attributes="1"/>
-                          <Component id="jLabelSliderArea" alignment="1" max="32767" attributes="1"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabelSlideNbAgent" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jLabelSliderStep" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jLabelSliderDImEnv" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jLabelSliderArea" alignment="1" max="32767" attributes="1"/>
+                              </Group>
+                              <Component id="jLabelSliderWaitTime" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <Component id="jLabelSliderWaitTime" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                          <Component id="jLabelSliderTrust" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -115,6 +123,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabelTrust" min="-2" max="-2" attributes="0"/>
                                       <Component id="jSliderTrust" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelSliderTrust" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="18" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -270,6 +279,13 @@
             <Property name="minimum" type="int" value="1"/>
             <Property name="value" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSliderTrustMouseClicked"/>
+            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jSliderTrustMouseDragged"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jSliderTrustKeyPressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelSliderTrust">
         </Component>
       </SubComponents>
     </Container>
@@ -333,7 +349,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jInternalFrameDisplay" min="-2" pref="436" max="-2" attributes="0"/>
-                      <EmptySpace pref="151" max="32767" attributes="0"/>
+                      <EmptySpace pref="160" max="32767" attributes="0"/>
                       <Component id="jPanelAction" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -348,7 +364,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="569" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="596" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -613,7 +629,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="407" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="402" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
