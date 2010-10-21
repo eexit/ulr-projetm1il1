@@ -69,13 +69,14 @@ public class SaveManagement {
         /*action*/
         while ((line = buffer.readLine())!=null){
             String[] action = line.split(" ");
-            if(action[0].equals("M")){
-                ArrayList<Agent> agents = e.getListAgents();
-                //agents[Integer.parseInt(action[1]-1)];
-
+            ArrayList<Agent> agents = e.getListAgents();
+            /*move*/
+            if(action[0].equals("M")){                
+                agents.get(Integer.parseInt(action[1])-1).setCoord(new Coord(Integer.parseInt(action[2]),Integer.parseInt(action[3])));
             }
+            /*persuade*/
             if(action[0].equals("P")){
-
+                agents.get(Integer.parseInt(action[1])-1).setOpinion(Integer.parseInt(action[2]));
             }
         }
 
