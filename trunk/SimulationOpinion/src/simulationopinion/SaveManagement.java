@@ -21,7 +21,8 @@ public class SaveManagement {
     private String filename;
 
     /**
-     * Class constructor
+     *      *
+     * @param fileName
      */
     public SaveManagement(String fileName) {
         this.filename = fileName;
@@ -52,7 +53,7 @@ public class SaveManagement {
         line = buffer.readLine();
         contentSort = line.split(" ");
         for (int i = 0; i < contentSort[0].length() - 6; i++) {
-            String[] agents = contentSort[i].split(";");
+            String[] agents = contentSort[0].split(";");
             a.add(new Agent(Integer.parseInt(agents[0]),
                     Integer.parseInt(agents[1]),
                     Integer.parseInt(agents[2]),
@@ -67,12 +68,17 @@ public class SaveManagement {
             ArrayList<Agent> agents = e.getListAgents();
             // TODO replace by a switch
             /*move*/
-            if (action[0].equals("M")) {
-                agents.get(Integer.parseInt(action[1]) - 1).setCoord(new Coord(Integer.parseInt(action[2]), Integer.parseInt(action[3])));
-            }
-            /*persuade*/
-            if (action[0].equals("P")) {
-                agents.get(Integer.parseInt(action[1]) - 1).setOpinion(Integer.parseInt(action[2]));
+            switch ((action[0].charAt(0))) {
+                /*move*/
+                case 'M':
+                    agents.get(Integer.parseInt(action[1]) - 1).setCoord(new Coord(Integer.parseInt(action[2]), Integer.parseInt(action[3])));
+                    break;
+                /*persuade*/
+                case 'P':
+                    agents.get(Integer.parseInt(action[1]) - 1).setOpinion(Integer.parseInt(action[2]));
+                    break;
+                default:
+                    break;
             }
         }
         input.close();
