@@ -4,13 +4,9 @@
  */
 package simulationopinion;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -54,7 +50,7 @@ public class LogManagement {
             //Write Value
             for (Object o : e.getValue()) {
                 Agent a = (Agent) o;
-                fw.write("_" + a.getOpinion());//Mettre getIdent
+                fw.write("_"+ a.getIdent());
             }
             fw.write("\n");
         }
@@ -67,42 +63,5 @@ public class LogManagement {
         fw.close();
     }
 
-    /**
-     * @author Teddie
-     * @author Chama
-     * @return TreeMap<Integer, ArrayList>
-     *
-     */
-    /*public TreeMap<Integer, ArrayList> readData() {
-        TreeMap<Integer, ArrayList> readOpinion = new TreeMap<Integer, ArrayList>();
-        try {
-
-            InputStream ips = new FileInputStream(filename);
-            InputStreamReader ipsr = new InputStreamReader(ips);
-            BufferedReader br = new BufferedReader(ipsr);
-            String ligne;
-            // Line by Line
-            while ((ligne = br.readLine()) != null) {
-                ligne = br.readLine();
-                ArrayList l = new ArrayList();
-                String[] skey = ligne.split(" ");
-                // Get Key
-                int key = Integer.parseInt(skey[0]);
-
-                // Create list value
-                String[] svalue = ligne.split("_");
-
-                for (int i = 1; i < svalue.length; i++) {
-                    int value = Integer.parseInt(svalue[i]);
-                    l.add(value);
-                }
-                readOpinion.put(key, l);
-
-            }
-            br.close();
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        return readOpinion;
-    }*/
+   
 }
