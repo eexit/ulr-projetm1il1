@@ -221,6 +221,17 @@ public class DisplayManagement extends javax.swing.JFrame {
         jButtonStart = new javax.swing.JButton();
         jButtonStop = new javax.swing.JButton();
         jLabelActionNbAgent = new javax.swing.JLabel();
+        jLabelInitWait = new javax.swing.JLabel();
+        jLabelInitDimEnv = new javax.swing.JLabel();
+        jLabelIniArea = new javax.swing.JLabel();
+        jLabellnitStep = new javax.swing.JLabel();
+        jLabelInitTrust = new javax.swing.JLabel();
+        jLabelInitNbAgent = new javax.swing.JLabel();
+        jLabelInitNbWait = new javax.swing.JLabel();
+        jLabelInitNbDimEnv = new javax.swing.JLabel();
+        jLabelInitNbArea = new javax.swing.JLabel();
+        jLabelInitNbStep = new javax.swing.JLabel();
+        jLabelInitNbTrust = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jInternalFrameDisplay = new javax.swing.JInternalFrame();
 
@@ -406,7 +417,7 @@ public class DisplayManagement extends javax.swing.JFrame {
                     .addComponent(jLabelWaitTime)
                     .addComponent(jLabelTrust)
                     .addComponent(jLabelPas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addGroup(jFrameWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSliderTrust, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSliderDimEnv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -483,11 +494,11 @@ public class DisplayManagement extends javax.swing.JFrame {
         jPanelGraph.setLayout(jPanelGraphLayout);
         jPanelGraphLayout.setHorizontalGroup(
             jPanelGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 598, Short.MAX_VALUE)
+            .addGap(0, 828, Short.MAX_VALUE)
         );
         jPanelGraphLayout.setVerticalGroup(
             jPanelGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 455, Short.MAX_VALUE)
+            .addGap(0, 405, Short.MAX_VALUE)
         );
 
         jLabelOpinion0.setText("Opinion 0");
@@ -510,6 +521,26 @@ public class DisplayManagement extends javax.swing.JFrame {
 
         jLabelOpinion9.setText("Opinion 9");
 
+        jLabelNbOpinion1.setText("loooooool");
+
+        jLabelNbOpinion4.setText("looool");
+
+        jLabelNbOpinion7.setText("lool");
+
+        jLabelNbOpinion8.setText("loool");
+
+        jLabelNbOpinion5.setText("loool");
+
+        jLabelNbOpinion2.setText("looooll");
+
+        jLabelNbOpinion6.setText("looool");
+
+        jLabelNbOpinion9.setText("looool");
+
+        jLabelNbOpinion3.setText("looool");
+
+        jLabelNbOpinion0.setText("looool");
+
         javax.swing.GroupLayout jPanelStatLayout = new javax.swing.GroupLayout(jPanelStat);
         jPanelStat.setLayout(jPanelStatLayout);
         jPanelStatLayout.setHorizontalGroup(
@@ -517,97 +548,93 @@ public class DisplayManagement extends javax.swing.JFrame {
             .addGroup(jPanelStatLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelOpinion3)
-                    .addComponent(jLabelNbOpinion3)
-                    .addComponent(jLabelOpinion6)
-                    .addComponent(jLabelNbOpinion6)
                     .addGroup(jPanelStatLayout.createSequentialGroup()
-                        .addComponent(jLabelOpinion0)
-                        .addGap(172, 172, 172)
                         .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelOpinion1)
+                            .addComponent(jLabelOpinion0)
+                            .addComponent(jLabelNbOpinion3)
+                            .addComponent(jLabelNbOpinion6)
+                            .addComponent(jLabelNbOpinion0, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                            .addComponent(jLabelOpinion3, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                            .addComponent(jLabelOpinion6, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelNbOpinion1)
                             .addComponent(jLabelNbOpinion4)
                             .addComponent(jLabelOpinion4)
+                            .addComponent(jLabelOpinion7)
                             .addComponent(jLabelNbOpinion7)
-                            .addComponent(jLabelOpinion7)))
-                    .addComponent(jLabelNbOpinion0, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelStatLayout.createSequentialGroup()
+                            .addComponent(jLabelOpinion1))
+                        .addGap(309, 309, 309)
                         .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelNbOpinion2)
+                            .addComponent(jLabelOpinion2)
+                            .addComponent(jLabelOpinion5)
+                            .addComponent(jLabelNbOpinion5)
                             .addComponent(jLabelOpinion8)
-                            .addComponent(jLabelNbOpinion8))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelStatLayout.createSequentialGroup()
-                            .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelOpinion5)
-                                .addComponent(jLabelNbOpinion5))
-                            .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatLayout.createSequentialGroup()
-                            .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelOpinion2)
-                                .addComponent(jLabelNbOpinion2))
-                            .addContainerGap(133, Short.MAX_VALUE)))))
-            .addGroup(jPanelStatLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelNbOpinion8)))
                     .addComponent(jLabelOpinion9)
                     .addComponent(jLabelNbOpinion9))
-                .addContainerGap(532, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanelStatLayout.setVerticalGroup(
             jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelStatLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addGap(13, 13, 13)
                 .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelOpinion0)
                     .addGroup(jPanelStatLayout.createSequentialGroup()
                         .addComponent(jLabelOpinion1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelNbOpinion1))
-                    .addGroup(jPanelStatLayout.createSequentialGroup()
-                        .addComponent(jLabelOpinion2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelNbOpinion2)))
-                .addGap(13, 13, 13)
-                .addComponent(jLabelNbOpinion0, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelStatLayout.createSequentialGroup()
-                        .addComponent(jLabelOpinion5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelNbOpinion5))
+                        .addComponent(jLabelNbOpinion1)
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatLayout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(jLabelOpinion7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelNbOpinion7))
+                            .addGroup(jPanelStatLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabelOpinion4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelNbOpinion4)
+                                .addGap(55, 55, 55))))
                     .addGroup(jPanelStatLayout.createSequentialGroup()
-                        .addComponent(jLabelOpinion4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelNbOpinion4))
-                    .addGroup(jPanelStatLayout.createSequentialGroup()
-                        .addComponent(jLabelOpinion3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelNbOpinion3)))
-                .addGap(19, 19, 19)
-                .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelStatLayout.createSequentialGroup()
-                            .addComponent(jLabelOpinion6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabelNbOpinion6))
-                        .addGroup(jPanelStatLayout.createSequentialGroup()
-                            .addComponent(jLabelOpinion7)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabelNbOpinion7)))
-                    .addGroup(jPanelStatLayout.createSequentialGroup()
-                        .addComponent(jLabelOpinion8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelNbOpinion8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGap(27, 27, 27)
-                .addComponent(jLabelOpinion9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelNbOpinion9)
-                .addGap(48, 48, 48))
+                        .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelStatLayout.createSequentialGroup()
+                                .addComponent(jLabelOpinion0)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelNbOpinion0, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelStatLayout.createSequentialGroup()
+                                .addComponent(jLabelOpinion2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelNbOpinion2)))
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabelOpinion3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelNbOpinion3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelOpinion6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelNbOpinion6)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelOpinion9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelNbOpinion9)
+                                .addGap(32, 32, 32))
+                            .addGroup(jPanelStatLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabelOpinion5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelNbOpinion5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelOpinion8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelNbOpinion8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jLabelAgent.setText("Nombre d'agents:");
@@ -621,6 +648,28 @@ public class DisplayManagement extends javax.swing.JFrame {
 
         jButtonStop.setText("Stop");
 
+        jLabelInitWait.setText("Temps d'attente");
+
+        jLabelInitDimEnv.setText("Dimension d'environnement:");
+
+        jLabelIniArea.setText("Zone d'interaction:");
+
+        jLabellnitStep.setText("Pas de déplacement:");
+
+        jLabelInitTrust.setText("Indice de confiance:");
+
+        jLabelInitNbAgent.setText("jLabel1");
+
+        jLabelInitNbWait.setText("jLabel2");
+
+        jLabelInitNbDimEnv.setText("jLabel3");
+
+        jLabelInitNbArea.setText("jLabel4");
+
+        jLabelInitNbStep.setText("jLabel5");
+
+        jLabelInitNbTrust.setText("jLabel6");
+
         javax.swing.GroupLayout jPanelActionLayout = new javax.swing.GroupLayout(jPanelAction);
         jPanelAction.setLayout(jPanelActionLayout);
         jPanelActionLayout.setHorizontalGroup(
@@ -629,14 +678,41 @@ public class DisplayManagement extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelActionLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonStart))
-                    .addComponent(jLabelAgent))
-                .addGap(46, 46, 46)
-                .addGroup(jPanelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelActionNbAgent)
-                    .addComponent(jButtonStop))
-                .addContainerGap(360, Short.MAX_VALUE))
+                        .addComponent(jLabelAgent)
+                        .addGroup(jPanelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelActionLayout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabelActionNbAgent)
+                                .addContainerGap(538, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelActionLayout.createSequentialGroup()
+                                .addGap(117, 117, 117)
+                                .addGroup(jPanelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelInitNbAgent)
+                                    .addComponent(jLabelInitNbWait)
+                                    .addComponent(jLabelInitNbDimEnv)
+                                    .addComponent(jLabelInitNbArea))
+                                .addGap(179, 179, 179)
+                                .addGroup(jPanelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelActionLayout.createSequentialGroup()
+                                        .addComponent(jButtonStart)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(jButtonStop))
+                                    .addGroup(jPanelActionLayout.createSequentialGroup()
+                                        .addGroup(jPanelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabellnitStep)
+                                            .addComponent(jLabelInitTrust))
+                                        .addGap(34, 34, 34)
+                                        .addGroup(jPanelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelInitNbTrust)
+                                            .addComponent(jLabelInitNbStep))))
+                                .addGap(52, 52, 52))))
+                    .addComponent(jLabelIniArea)
+                    .addGroup(jPanelActionLayout.createSequentialGroup()
+                        .addComponent(jLabelInitWait)
+                        .addContainerGap(593, Short.MAX_VALUE))
+                    .addGroup(jPanelActionLayout.createSequentialGroup()
+                        .addComponent(jLabelInitDimEnv)
+                        .addContainerGap(523, Short.MAX_VALUE))))
         );
         jPanelActionLayout.setVerticalGroup(
             jPanelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -644,12 +720,27 @@ public class DisplayManagement extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelAgent)
-                    .addComponent(jLabelActionNbAgent))
-                .addGap(42, 42, 42)
+                    .addComponent(jLabelActionNbAgent)
+                    .addComponent(jLabellnitStep)
+                    .addComponent(jLabelInitNbAgent)
+                    .addComponent(jLabelInitNbStep))
+                .addGap(18, 18, 18)
                 .addGroup(jPanelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelInitWait)
+                    .addComponent(jLabelInitTrust)
+                    .addComponent(jLabelInitNbWait)
+                    .addComponent(jLabelInitNbTrust))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelInitDimEnv)
+                    .addComponent(jLabelInitNbDimEnv))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanelActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelIniArea)
                     .addComponent(jButtonStart)
-                    .addComponent(jButtonStop))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonStop)
+                    .addComponent(jLabelInitNbArea))
+                .addContainerGap())
         );
 
         jInternalFrameDisplay.setResizable(true);
@@ -663,11 +754,11 @@ public class DisplayManagement extends javax.swing.JFrame {
         jInternalFrameDisplay.getContentPane().setLayout(jInternalFrameDisplayLayout);
         jInternalFrameDisplayLayout.setHorizontalGroup(
             jInternalFrameDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
+            .addGap(0, 670, Short.MAX_VALUE)
         );
         jInternalFrameDisplayLayout.setVerticalGroup(
             jInternalFrameDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 402, Short.MAX_VALUE)
+            .addGap(0, 512, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -676,15 +767,11 @@ public class DisplayManagement extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jInternalFrameDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jInternalFrameDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jInternalFrameDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jInternalFrameDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -693,14 +780,17 @@ public class DisplayManagement extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelAction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelStat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jPanelAction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelStat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -708,13 +798,13 @@ public class DisplayManagement extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanelStat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
-                        .addComponent(jPanelAction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanelAction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jPanelStat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -737,8 +827,12 @@ public class DisplayManagement extends javax.swing.JFrame {
             this.setVisible(true);
         }
         jFrameWelcome.setVisible(false);
-        Integer tmp = jSliderNbAgent.getValue();
-        jLabelActionNbAgent.setText(tmp.toString());
+        jLabelInitNbAgent.setText(((Integer)jSliderNbAgent.getValue()).toString());
+        jLabelInitNbDimEnv.setText(((Integer)jSliderDimEnv.getValue()).toString());
+        jLabelInitNbArea.setText(((Integer)jSliderArea.getValue()).toString());
+        jLabelInitNbStep.setText(((Integer)jSliderStep.getValue()).toString());
+        jLabelInitNbWait.setText(((Integer)jSliderWaitTime.getValue()).toString());
+        jLabelInitNbTrust.setText(((Integer)jSliderTrust.getValue()).toString());
     }//GEN-LAST:event_jButtonOkActionPerformed
 
     private void jButtonLoad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoad1ActionPerformed
@@ -832,6 +926,16 @@ public class DisplayManagement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelAgent;
     private javax.swing.JLabel jLabelEnvDim;
     private javax.swing.JLabel jLabelInfo;
+    private javax.swing.JLabel jLabelIniArea;
+    private javax.swing.JLabel jLabelInitDimEnv;
+    private javax.swing.JLabel jLabelInitNbAgent;
+    private javax.swing.JLabel jLabelInitNbArea;
+    private javax.swing.JLabel jLabelInitNbDimEnv;
+    private javax.swing.JLabel jLabelInitNbStep;
+    private javax.swing.JLabel jLabelInitNbTrust;
+    private javax.swing.JLabel jLabelInitNbWait;
+    private javax.swing.JLabel jLabelInitTrust;
+    private javax.swing.JLabel jLabelInitWait;
     private javax.swing.JLabel jLabelInitnbAgent;
     private javax.swing.JLabel jLabelInteraction;
     private javax.swing.JLabel jLabelNbOpinion0;
@@ -863,6 +967,7 @@ public class DisplayManagement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSliderWaitTime;
     private javax.swing.JLabel jLabelTrust;
     private javax.swing.JLabel jLabelWaitTime;
+    private javax.swing.JLabel jLabellnitStep;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelAction;
     private javax.swing.JPanel jPanelGraph;
