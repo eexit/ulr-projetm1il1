@@ -1,20 +1,22 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulationopinion;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Random;
 
 /**
- *
+ * @author Joris Berthelot
  * @author afantou
  */
 public class Controller {
 
-    public void execute() {
+    public Controller() {
+    }
+
+    /**
+     * Application runner
+     */
+    public void exec() {
         try {
             ArrayList<Agent> agentsList = new ArrayList<Agent>();
             DisplayManagement graphicInterface = new DisplayManagement(agentsList);
@@ -27,21 +29,16 @@ public class Controller {
             for (int i = 0; i < graphicInterface.getNbAgent(); i++) {
                 Agent agent = new Agent(graphicInterface.getTrust(), graphicInterface.getStep(), graphicInterface.getArea(), graphicInterface.getWaitTime(), new Coord(new Random().nextInt(graphicInterface.getDimEnv() + 1), new Random().nextInt(graphicInterface.getDimEnv() + 1)));
                 agentsList.add(agent);
-                System.out.println(agent.getOpinion() + " x : " + agent.getCoord().x() + " y : " + agent.getCoord().y());
             }
             env.setAreaSize(graphicInterface.getDimEnv());
             env.setListAgents(agentsList);
-            for (Map.Entry<Integer, ArrayList<Agent>> e : env.getListAgentsToOpinion().entrySet()) {
-                System.out.println("Opinion " + e.getKey());
-                for (Agent a : e.getValue()) {
-                    System.out.println(a.getOpinion());
-                }
-            }
             env.run(graphicInterface);
-        } catch (AgentException ex) {
-            System.err.println(ex.getMessage());
-        } catch (EnvironmentException ex) {
-            System.err.println(ex.getMessage());
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        } catch (AgentException e) {
+            System.err.println(e.getMessage());
+        } catch (EnvironmentException e) {
+            System.err.println(e.getMessage());
         }
     }
 }
