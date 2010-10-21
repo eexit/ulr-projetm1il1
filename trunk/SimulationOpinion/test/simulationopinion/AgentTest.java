@@ -1,5 +1,6 @@
 package simulationopinion;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 import junit.framework.TestCase;
 import static org.junit.Assert.*;
@@ -172,5 +173,37 @@ public class AgentTest extends TestCase {
         assertEquals(instance.getCoord(), new Coord());
         instance.setCoord(new Coord(1, 2));
         assertEquals(instance.getCoord(), new Coord(1, 2));
+    }
+
+    public void testMove() {
+        try {
+            instance.move(12);
+            if (instance.getCoord().x() == 0 && instance.getCoord().y() == 0) {
+                fail("Agent don't move");
+            }
+        } catch (AgentException ex) {
+        }
+
+    }
+
+    public void testMoveFail() {
+        try {
+            instance.move(-2);
+            fail("AgentException thrown exception expected!");
+        } catch (AgentException ex) {
+        }
+
+    }
+
+    public void testPersuade() {
+        try {
+            Agent a1 = new Agent(5, 1, 5, 5, new Coord(1, 1));
+            Agent a2 = new Agent(5, 1, 5, 5, new Coord(1, 2));
+            a1.setOpinion(1);
+            a2.setOpinion(2);
+            a1.persuade(a2);
+            assertEquals(a1.getOpinion(), a2.getOpinion());
+        } catch (AgentException e) {
+        }
     }
 }

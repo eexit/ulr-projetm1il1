@@ -146,21 +146,21 @@ public class Agent implements Comparable {
         this.setCoord(listMovePossible.get(direction));
     }
 
-    public void persuade(ArrayList<Agent> listNearAgent) throws AgentException {
-        TreeMap<Agent, Long> tm = new TreeMap<Agent, Long>(this.listAgentNotSpeak);
+    public void persuade(Agent agent) throws AgentException {
+        TreeMap<Agent, Long> mutedAgents = new TreeMap<Agent, Long>(this.listAgentNotSpeak);
         for (Map.Entry<Agent, Long> e : this.listAgentNotSpeak.entrySet()) {
             if (e.getValue() > System.currentTimeMillis()) {
-                tm.remove(e.getKey());
+                mutedAgents.remove(e.getKey());
             }
         }
-        this.listAgentNotSpeak = tm;
-        for (Agent a : listNearAgent) {
-            if (a.getOpinion() - a.getTrustLevel() <= this.getOpinion() && a.getOpinion() + a.getTrustLevel() >= this.getOpinion() && !this.listAgentNotSpeak.containsKey(a)) {
-                a.setOpinion(this.getOpinion());
-                long waitOffTime = System.currentTimeMillis() + (this.getWaitTime() * 1000);
-                this.addToListAgentNotSpeak(a, waitOffTime);
-                a.addToListAgentNotSpeak(this, waitOffTime);
-            }
+
+        this.listAgentNotSpeak = mutedAgents;
+        
+        if (agent.getOpinion() - agent.getTrustLevel() <= this.getOpinion() && agent.getOpinion() + agent.getTrustLevel() >= this.getOpinion() && !this.listAgentNotSpeak.containsKey(agent)) {
+            agent.setOpinion(this.getOpinion());
+            long waitOffTime = System.currentTimeMillis() + (this.getWaitTime() * 1000);
+            this.addToListAgentNotSpeak(agent, waitOffTime);
+            agent.addToListAgentNotSpeak(this, waitOffTime);
         }
     }
 
