@@ -79,9 +79,6 @@ public class SaveManagement {
                 agents.get(Integer.parseInt(action[1])-1).setOpinion(Integer.parseInt(action[2]));
             }
         }
-
-
-        //System.out.println(contentFile);
         input.close();
     }
 
