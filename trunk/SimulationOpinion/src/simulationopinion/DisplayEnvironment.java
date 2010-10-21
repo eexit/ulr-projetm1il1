@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package simulationopinion;
 
 import java.awt.Color;
@@ -16,22 +15,30 @@ import javax.swing.JPanel;
  * @author Teddie
  */
 public class DisplayEnvironment extends JPanel {
+
     private ArrayList<Agent> listAgent;
-    private TreeMap<Integer,Color> listColorToOpinion;
-    public DisplayEnvironment(ArrayList<Agent> listAgent, TreeMap<Integer,Color> listColorToOpinion){
+    private TreeMap<Integer, Color> listColorToOpinion;
+
+    public DisplayEnvironment() {
+    }
+
+    public DisplayEnvironment(ArrayList<Agent> listAgent, TreeMap<Integer, Color> listColorToOpinion) {
         super();
         this.listAgent = listAgent;
         this.listColorToOpinion = listColorToOpinion;
     }
+
     @Override
-    protected void paintComponent(Graphics s){
+    public void paintComponent(Graphics s) {
+        super.paintComponent(s);
+        s.setColor(Color.WHITE);
+        s.fillRect(0, 0, this.getWidth(), this.getHeight());
         for(Agent a : listAgent)
         {
-            s.setColor(this.listColorToOpinion.get(a.getOpinion()));
-            s.fillOval(a.getCoord().x(), a.getCoord().y(), 5, 5);
+        s.setColor(this.listColorToOpinion.get(a.getOpinion()));
+        s.fillOval(a.getCoord().x(), a.getCoord().y(), 5, 5);
         }
-        s.setColor(Color.BLACK);
-        s.drawOval(10, 10, 10, 10);
+        /*s.setColor(Color.BLACK);
+        s.fillOval(10, 10, 10, 10);*/
     }
-
 }
