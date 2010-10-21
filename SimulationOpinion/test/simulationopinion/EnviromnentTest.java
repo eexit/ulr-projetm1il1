@@ -90,18 +90,18 @@ public class EnviromnentTest extends TestCase {
             assertEquals(200, env.getNbAgent());
             assertEquals(200, env.getListAgentsToOpinion().get(3).size());
             assertEquals(1, env.getNearAgents(list.get(0)).size());
-            assertEquals(199, env.getListAgentsToOpinion().get(3).size());
+            assertEquals(200, env.getListAgentsToOpinion().get(3).size());
             assertEquals(2, env.getNearAgents(list.get(10)).size());
-            assertEquals(197, env.getListAgentsToOpinion().get(3).size());
+            assertEquals(200, env.getListAgentsToOpinion().get(3).size());
             assertEquals(1, env.getNearAgents(list.get(199)).size());
-            assertEquals(196, env.getListAgentsToOpinion().get(3).size());
+            assertEquals(200, env.getListAgentsToOpinion().get(3).size());
         } catch (AgentException e) {
             fail(e.getMessage());
         }
     }
 
     /**
-     * Tests updateListAgents() method
+     * Tests updateAgentAllocation() method
      */
     public void testUpdateListAgents() {
         try {
@@ -118,7 +118,6 @@ public class EnviromnentTest extends TestCase {
             env.setListAgents(agents);
             assertEquals(10, env.getNbAgent());
             assertEquals(10, env.getListAgentsToOpinion().get(1).size());
-            assertTrue(env.getListAgentsToOpinion().get(0).isEmpty());
 
             // Simulates a Environment.getNearAgents() call
             a1 = env.getListAgentsToOpinion().get(1).remove(2);
@@ -126,14 +125,17 @@ public class EnviromnentTest extends TestCase {
             assertEquals(8, env.getListAgentsToOpinion().get(1).size());
 
             // Simulates that the current working agent persuasion succeed
-            agents.clear();
             a1.setOpinion(2);
             a2.setOpinion(3);
-            agents.add(a1);
-            agents.add(a2);
 
             // Updates the agent allocation through opinion levels
-            env.updateListAgents(agents);
+            env.updateAgentAllocation(a1);
+            assertEquals(10, env.getNbAgent());
+            assertEquals(8, env.getListAgentsToOpinion().get(1).size());
+            assertEquals(1, env.getListAgentsToOpinion().get(2).size());
+            assertEquals(0, env.getListAgentsToOpinion().get(3).size());
+
+            env.updateAgentAllocation(a2);
             assertEquals(10, env.getNbAgent());
             assertEquals(8, env.getListAgentsToOpinion().get(1).size());
             assertEquals(1, env.getListAgentsToOpinion().get(2).size());
@@ -147,21 +149,16 @@ public class EnviromnentTest extends TestCase {
     }
 
     /**
-     * Tests that updateListAgents() method throws an exception if there are
+     * Tests that updateAgentAllocation() method throws an exception if there are
      * agent intruders
      */
     public void testUpdateListAgentsFailTryToAddAgent() {
         try {
             ArrayList<Agent> agents = new ArrayList<Agent>();
-            ArrayList<Agent> intruders = new ArrayList<Agent>();
 
             // Intruder agents
             Agent a1 = new Agent();
-            Agent a2 = new Agent();
             a1.setOpinion(4);
-            a1.setOpinion(8);
-            intruders.add(a1);
-            intruders.add(a2);
 
             for (int i = 0; i < 10; i++) {
                 Agent agent = new Agent();
@@ -170,7 +167,7 @@ public class EnviromnentTest extends TestCase {
             }
 
             env.setListAgents(agents);
-            env.updateListAgents(intruders);
+            env.updateAgentAllocation(a1);
             fail("EnvironmentException throw exception expected!");
         } catch (AgentException e) {
         } catch (EnvironmentException e) {

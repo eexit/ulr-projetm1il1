@@ -1,6 +1,7 @@
 package simulationopinion;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.TreeMap;
 
 /** 
@@ -101,7 +102,7 @@ public class Environment {
                     a.getCoord().y() <= bottomRight.y() &&
                     !a.equals(agent)) {
                 nearAgents.add(a);
-                this.getListAgentsToOpinion().get(a.getOpinion()).remove(a);
+                //  this.getListAgentsToOpinion().get(a.getOpinion()).remove(a);
             }
         }
         return nearAgents;
@@ -121,15 +122,23 @@ public class Environment {
             this.running = true;
 
             while (this.isRunning()) {
-                for (Agent agent : this.getListAgents()) {
+                ArrayList<Agent> agents = this.getListAgents();
+                Collections.shuffle(agents);
+                for (Agent agent : agents) {
                     ArrayList<Agent> nearby = this.getNearAgents(agent);
+                    Collections.shuffle(nearby);
                     agent.move(this.getAreaSize());
-                    agent.persuade(nearby);
-                    this.updateListAgents(nearby);
-                    display.update(this.listAgentsToOpinion);
+                    for (Agent nearAgent : nearby) {
+                        this.getListAgentsToOpinion().get(nearAgent.getOpinion()).remove(nearAgent);
+                        agent.persuade(nearAgent);
+                        this.updateAgentAllocation(nearAgent);
+                        display.update(this.getListAgentsToOpinion());
+                        Thread.sleep(50);
+                    }
                 }
             }
         } catch (AgentException e) {
+        } catch (InterruptedException e) {
         }
     }
 
@@ -200,14 +209,12 @@ public class Environment {
      * @param listAgents
      * @throws EnvironmentException
      */
-    public void updateListAgents(ArrayList<Agent> listAgents) throws EnvironmentException {
-        for (Agent agent : listAgents) {
-            if (!this.getListAgents().contains(agent)) {
-                throw new EnvironmentException("Unexpected agent found! Check out for any intruder! Agent: " + agent);
-            }
-            ArrayList<Agent> opinionlist = this.listAgentsToOpinion.get(agent.getOpinion());
-            opinionlist.add(agent);
+    public void updateAgentAllocation(Agent agent) throws EnvironmentException {
+        if (!this.getListAgents().contains(agent)) {
+            throw new EnvironmentException("Unexpected agent found! Check out for any intruder! Agent: " + agent);
         }
+        ArrayList<Agent> opinionlist = this.getListAgentsToOpinion().get(agent.getOpinion());
+        opinionlist.add(agent);
     }
 
     /**
