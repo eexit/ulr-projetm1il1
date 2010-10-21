@@ -6,11 +6,13 @@
 package simulationopinion;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -62,11 +64,21 @@ public class SaveManagement {
                     new Coord(Integer.parseInt(agents[4]),Integer.parseInt(agents[5]))
                     ));
         }
-/*
+        e.setListAgents(a);
+
+        /*action*/
         while ((line = buffer.readLine())!=null){
-            
+            String[] action = line.split(" ");
+            if(action[0].equals("M")){
+                ArrayList<Agent> agents = e.getListAgents();
+                //agents[Integer.parseInt(action[1]-1)];
+
+            }
+            if(action[0].equals("P")){
+
+            }
         }
-*/
+
 
         //System.out.println(contentFile);
         input.close();
@@ -76,9 +88,10 @@ public class SaveManagement {
      * @param attribute
      */
     void save(String attribute) throws FileNotFoundException, IOException{
-        FileOutputStream file = new FileOutputStream(this.getFilename());
-        DataOutputStream output = new DataOutputStream(file);
-        output.writeBytes(attribute);
+        FileWriter file = new FileWriter(this.getFilename(),true);
+        BufferedWriter output = new BufferedWriter(file);
+        output.write(attribute+"\n");
+        output.flush();
         output.close();
     }
 
