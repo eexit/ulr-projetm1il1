@@ -21,8 +21,8 @@ public class AgentTest extends TestCase {
     public void setUp() {
         instance = new Agent();
         assertEquals(0, instance.getWaitTime());
-        assertEquals(0, instance.getTrustLevel());
-        assertEquals(1, instance.getMoveStep());
+        assertEquals(Agent.TRUST_MIN, instance.getTrustLevel());
+        assertEquals(Agent.MOVE_STEP_MIN, instance.getMoveStep());
         assertEquals(1, instance.getPerceptionDepth());
         assertTrue(instance.getCoord() instanceof Coord);
     }
