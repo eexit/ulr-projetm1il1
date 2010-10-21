@@ -189,6 +189,7 @@
         <Component class="javax.swing.JSlider" name="jSliderNbAgent">
           <Properties>
             <Property name="maximum" type="int" value="500"/>
+            <Property name="minimum" type="int" value="2"/>
             <Property name="value" type="int" value="250"/>
           </Properties>
           <Events>
@@ -211,9 +212,9 @@
         </Component>
         <Component class="javax.swing.JSlider" name="jSliderArea">
           <Properties>
-            <Property name="maximum" type="int" value="500"/>
+            <Property name="maximum" type="int" value="50"/>
             <Property name="minimum" type="int" value="1"/>
-            <Property name="value" type="int" value="250"/>
+            <Property name="value" type="int" value="25"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSliderAreaMouseClicked"/>
@@ -248,9 +249,9 @@
         </Component>
         <Component class="javax.swing.JSlider" name="jSliderWaitTime">
           <Properties>
-            <Property name="maximum" type="int" value="60"/>
+            <Property name="maximum" type="int" value="30"/>
             <Property name="minimum" type="int" value="1"/>
-            <Property name="value" type="int" value="30"/>
+            <Property name="value" type="int" value="5"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSliderWaitTimeMouseClicked"/>

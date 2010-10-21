@@ -265,6 +265,7 @@ public class DisplayManagement extends javax.swing.JFrame {
         });
 
         jSliderNbAgent.setMaximum(500);
+        jSliderNbAgent.setMinimum(2);
         jSliderNbAgent.setValue(250);
         jSliderNbAgent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -301,9 +302,9 @@ public class DisplayManagement extends javax.swing.JFrame {
             }
         });
 
-        jSliderArea.setMaximum(500);
+        jSliderArea.setMaximum(50);
         jSliderArea.setMinimum(1);
-        jSliderArea.setValue(250);
+        jSliderArea.setValue(25);
         jSliderArea.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSliderAreaMouseClicked(evt);
@@ -341,9 +342,9 @@ public class DisplayManagement extends javax.swing.JFrame {
 
         jLabelWaitTime.setText("Temps d'attente");
 
-        jSliderWaitTime.setMaximum(60);
+        jSliderWaitTime.setMaximum(30);
         jSliderWaitTime.setMinimum(1);
-        jSliderWaitTime.setValue(30);
+        jSliderWaitTime.setValue(5);
         jSliderWaitTime.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSliderWaitTimeMouseClicked(evt);
