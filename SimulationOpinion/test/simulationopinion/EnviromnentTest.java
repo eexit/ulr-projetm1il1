@@ -22,7 +22,7 @@ public class EnviromnentTest extends TestCase {
         env = new Environment();
         assertEquals(0, env.getNbAgent());
         assertEquals(0, env.getAreaSize());
-        assertEquals(Agent.OPINION_MAX, env.getListAgentsToOpinion().size());
+        assertEquals(Agent.OPINION_MAX + 1, env.getListAgentsToOpinion().size());
         assertTrue(env.getListAgents().isEmpty());
         assertFalse(env.isRunning());
 
@@ -64,7 +64,7 @@ public class EnviromnentTest extends TestCase {
                 list.add(agent);
             }
             env.setListAgents(list);
-            assertEquals(9, env.getListAgentsToOpinion().size());
+            assertEquals(10, env.getListAgentsToOpinion().size());
             assertEquals(200, env.getListAgentsToOpinion().get(3).size());
         } catch (AgentException e) {
             fail(e.getMessage());
@@ -183,7 +183,7 @@ public class EnviromnentTest extends TestCase {
     public void testRunFailNoAgents() {
         try {
             assertFalse(env.isRunning());
-            env.run();
+            env.run(new DisplayManagement(new ArrayList<Agent>()));
             fail("EnvironmentException throw exception expected!");
         } catch (EnvironmentException e) {
         }

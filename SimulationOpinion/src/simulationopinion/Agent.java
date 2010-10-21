@@ -23,7 +23,7 @@ public class Agent implements Comparable {
     /**
      * Minimal value of trust level
      */
-    public final static int TRUST_MIN = 0;
+    public final static int TRUST_MIN = 1;
     /**
      * Maximal value of trust level
      */
@@ -79,11 +79,11 @@ public class Agent implements Comparable {
      * Constructor
      */
     public Agent() {
-        this.opinion = 0;
+        this.opinion = new Random().nextInt(Agent.OPINION_MAX + 1);
         this.waitTime = 0;
-        this.trustLevel = 1;
-        this.perceptionDepth = 0;
-        this.moveStep = 1;
+        this.trustLevel = Agent.TRUST_MIN;
+        this.perceptionDepth = 1;
+        this.moveStep = Agent.MOVE_STEP_MIN;
         this.coord = new Coord();
         this.listAgentNotSpeak = new TreeMap<Agent, Long>();
         this.ident = ++count;
@@ -100,7 +100,7 @@ public class Agent implements Comparable {
     public Agent(int trustLevel, int moveStep, int perceptionDepth, int waitTime, Coord c) throws AgentException {
         this();
         try {
-            this.setOpinion(new Random().nextInt(Agent.OPINION_MAX + 1));
+            this.opinion = new Random().nextInt(Agent.OPINION_MAX + 1);
             this.setTrustLevel(trustLevel);
             this.perceptionDepth = perceptionDepth;
             this.moveStep = moveStep;
