@@ -1,16 +1,19 @@
 package simulationopinion;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TreeMap;
+import javax.swing.JButton;
 
 /** 
  * @author Joris Berthelot (joris.berthelot@gmail.com)
  * @author Alexandre Coste
  */
-public class Environment {
+public class Environment implements ActionListener {
 
     /**
      * Interval of millisecond to log the state of application
@@ -143,7 +146,8 @@ public class Environment {
         this.getSaver().saveAgent(this.getListAgents());
         this.getLogger().saveData(this.getListAgentsToOpinion());
 
-        this.running = true;
+        while (!this.isRunning()) {
+        }
         while (this.isRunning()) {
             ArrayList<Agent> agents = this.getListAgents();
             Collections.shuffle(agents);
@@ -169,6 +173,13 @@ public class Environment {
                 }
             }
         }
+    }
+
+    /**
+     * Starts the execution of the environment
+     */
+    public void start() {
+        this.running = true;
     }
 
     /**
@@ -284,5 +295,14 @@ public class Environment {
      */
     public void setSaver(SaveManagement saver) {
         this.saver = saver;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (((JButton) e.getSource()).getText() == "Start") {
+            this.start();
+        }
+        if (((JButton) e.getSource()).getText() == "Stop") {
+            this.stop();
+        }
     }
 }

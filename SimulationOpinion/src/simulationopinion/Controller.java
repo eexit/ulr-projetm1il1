@@ -19,8 +19,8 @@ public class Controller {
     public void exec() {
         try {
             ArrayList<Agent> agentsList = new ArrayList<Agent>();
-            DisplayManagement graphicInterface = new DisplayManagement(agentsList);
             Environment env = new Environment();
+            DisplayManagement graphicInterface = new DisplayManagement(agentsList, env);
 
             while (!graphicInterface.isVisible()) {
                 System.out.print("");

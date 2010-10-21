@@ -37,11 +37,13 @@ public class DisplayManagement extends javax.swing.JFrame {
     private DisplayEnvironment dispEnv;
 
     /** Creates new form DisplayManagement */
-    public DisplayManagement(ArrayList<Agent> listAgent) {
+    public DisplayManagement(ArrayList<Agent> listAgent, Environment env) {
         initComponents();
         this.setVisible(false);
         this.InitialisationColor();
         this.InitialisationPiePlot();
+        jButtonStart.addActionListener(env);
+        jButtonStop.addActionListener(env);
         jFrameWelcome.setVisible(true);
         dispEnv = new DisplayEnvironment(listAgent, listColorToOpinion);
         dispEnv.setBackground(Color.WHITE);
