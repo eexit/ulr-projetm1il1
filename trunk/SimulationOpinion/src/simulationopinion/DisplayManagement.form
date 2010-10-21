@@ -43,7 +43,7 @@
                       <Component id="jLabelTrust" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelPas" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                  <EmptySpace pref="79" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jSliderTrust" alignment="1" max="32767" attributes="1"/>
                       <Component id="jSliderDimEnv" alignment="1" max="32767" attributes="1"/>
@@ -312,16 +312,21 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelAction" max="32767" attributes="1"/>
-                  <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanelGraph" max="32767" attributes="1"/>
-                  <Component id="jPanelStat" alignment="0" max="32767" attributes="1"/>
+                  <Component id="jPanelAction" max="32767" attributes="1"/>
+                  <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jPanelGraph" max="32767" attributes="1"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jPanelStat" min="-2" max="-2" attributes="1"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -331,17 +336,17 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jPanelGraph" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jPanelStat" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="141" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanelAction" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jPanelGraph" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="jPanelStat" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -352,12 +357,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="598" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="828" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="455" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="405" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -370,124 +375,112 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabelOpinion3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelNbOpinion3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelOpinion6" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelNbOpinion6" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabelOpinion0" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelOpinion1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelNbOpinion1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelNbOpinion4" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelOpinion4" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelNbOpinion7" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelOpinion7" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="jLabelNbOpinion0" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="119" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelOpinion8" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelOpinion0" alignment="0" min="-2" max="-2" attributes="1"/>
+                              <Component id="jLabelNbOpinion3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelNbOpinion6" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelNbOpinion0" pref="313" max="32767" attributes="1"/>
+                              <Component id="jLabelOpinion3" pref="313" max="32767" attributes="1"/>
+                              <Component id="jLabelOpinion6" pref="313" max="32767" attributes="1"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelNbOpinion1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelNbOpinion4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelOpinion4" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelOpinion7" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelNbOpinion7" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelOpinion1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="309" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelNbOpinion2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelOpinion2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelOpinion5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelNbOpinion5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelOpinion8" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelNbOpinion8" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelOpinion5" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelNbOpinion5" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelOpinion2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelNbOpinion2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="133" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="jLabelOpinion9" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelNbOpinion9" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabelOpinion9" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelNbOpinion9" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="532" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabelOpinion0" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabelOpinion1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabelNbOpinion1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabelOpinion2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabelNbOpinion2" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                  <Component id="jLabelNbOpinion0" min="-2" pref="14" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabelOpinion5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabelNbOpinion5" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabelOpinion4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabelNbOpinion4" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabelOpinion3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabelNbOpinion3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabelOpinion6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabelNbOpinion6" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabelOpinion7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabelNbOpinion7" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="1" attributes="1">
+                                  <EmptySpace min="64" pref="64" max="64" attributes="0"/>
+                                  <Component id="jLabelOpinion7" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabelNbOpinion7" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                  <Component id="jLabelOpinion4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabelNbOpinion4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="55" pref="55" max="55" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabelOpinion8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabelNbOpinion8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabelOpinion0" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabelNbOpinion0" min="-2" pref="14" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabelOpinion2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabelNbOpinion2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="1" attributes="1">
+                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                  <Component id="jLabelOpinion3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jLabelNbOpinion3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabelOpinion6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabelNbOpinion6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabelOpinion9" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabelNbOpinion9" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                  <Component id="jLabelOpinion5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabelNbOpinion5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabelOpinion8" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabelNbOpinion8" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="jLabelOpinion9" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabelNbOpinion9" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -544,24 +537,54 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNbOpinion1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="loooooool"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNbOpinion4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="looool"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNbOpinion7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="lool"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNbOpinion8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="loool"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNbOpinion5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="loool"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNbOpinion2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="looooll"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNbOpinion6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="looool"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNbOpinion9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="looool"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNbOpinion3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="looool"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNbOpinion0">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="looool"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -570,21 +593,58 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jButtonStart" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelAgent" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                                  <Component id="jLabelActionNbAgent" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="538" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabelInitNbAgent" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelInitNbWait" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelInitNbDimEnv" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelInitNbArea" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jButtonStart" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="jButtonStop" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabellnitStep" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelInitTrust" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabelInitNbTrust" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelInitNbStep" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <Component id="jLabelAgent" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelIniArea" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabelInitWait" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="593" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabelInitDimEnv" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="523" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabelActionNbAgent" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonStop" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="360" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -595,13 +655,30 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelAgent" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelActionNbAgent" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabellnitStep" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelInitNbAgent" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelInitNbStep" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabelInitWait" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelInitTrust" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelInitNbWait" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelInitNbTrust" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabelInitDimEnv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelInitNbDimEnv" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabelIniArea" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonStart" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonStop" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelInitNbArea" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -627,6 +704,61 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelActionNbAgent">
         </Component>
+        <Component class="javax.swing.JLabel" name="jLabelInitWait">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Temps d&apos;attente"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelInitDimEnv">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Dimension d&apos;environnement:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelIniArea">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Zone d&apos;interaction:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabellnitStep">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pas de d&#xe9;placement:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelInitTrust">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Indice de confiance:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelInitNbAgent">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelInitNbWait">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelInitNbDimEnv">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelInitNbArea">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelInitNbStep">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel5"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelInitNbTrust">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel6"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -634,20 +766,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jInternalFrameDisplay" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jInternalFrameDisplay" pref="686" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jInternalFrameDisplay" min="-2" pref="436" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
+              <Component id="jInternalFrameDisplay" alignment="0" pref="546" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -671,12 +798,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="484" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="670" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="402" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="512" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
