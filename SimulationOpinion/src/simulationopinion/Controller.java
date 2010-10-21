@@ -32,6 +32,11 @@ public class Controller {
             }
             env.setAreaSize(graphicInterface.getDimEnv());
             env.setListAgents(agentsList);
+
+            // TODO graphicInterface.get
+            env.setSaver(new SaveManagement("application.log"));
+            env.setLogger(new LogManagement());
+
             env.run(graphicInterface);
         } catch (IOException e) {
             System.err.println(e.getMessage());

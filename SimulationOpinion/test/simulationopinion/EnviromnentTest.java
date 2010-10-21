@@ -1,6 +1,10 @@
 package simulationopinion;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import junit.framework.TestCase;
 
 /**
@@ -180,8 +184,14 @@ public class EnviromnentTest extends TestCase {
     public void testRunFailNoAgents() {
         try {
             assertFalse(env.isRunning());
-            env.run(new DisplayManagement(new ArrayList<Agent>()));
-            fail("EnvironmentException throw exception expected!");
+            try {
+                env.run(new DisplayManagement(new ArrayList<Agent>()));
+            } catch (AgentException e) {
+            } catch (FileNotFoundException e) {
+            } catch (IOException e) {
+            } finally {
+                fail("Exception throw exception expected!");
+            }
         } catch (EnvironmentException e) {
         }
     }

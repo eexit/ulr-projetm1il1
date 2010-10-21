@@ -17,7 +17,7 @@ public class LogManagement {
     /**
      * Default log filename
      */
-    public final static String LOG_FILENAME = "opinion_log";
+    public final static String LOG_FILENAME = "agent.log";
     /**
      * Log filename
      */
@@ -40,17 +40,16 @@ public class LogManagement {
      * @param saveOpinion
      * @throws IOException
      */
-    public void saveData(TreeMap<Integer, ArrayList> saveOpinion) throws IOException {
+    public void saveData(TreeMap<Integer, ArrayList<Agent>> saveOpinion) throws IOException {
         int max = 0;
         FileWriter fw = new FileWriter(this.filename, true);
-        for (Map.Entry<Integer, ArrayList> e : saveOpinion.entrySet()) {
+        for (Map.Entry<Integer, ArrayList<Agent>> e : saveOpinion.entrySet()) {
             //Write Key
             max = Math.max(max, e.getValue().size());
             fw.write(e.getKey() + " ");
             //Write Value
-            for (Object o : e.getValue()) {
-                Agent a = (Agent) o;
-                fw.write("_" + a.getIdent());
+            for (Agent agent : e.getValue()) {
+                fw.write("_" + agent.getIdent());
             }
             fw.write("\n");
         }

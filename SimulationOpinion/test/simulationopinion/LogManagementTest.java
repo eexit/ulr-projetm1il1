@@ -11,13 +11,9 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 /**
- *
  * @author Teddie
  */
 public class LogManagementTest extends TestCase {
-
-
-
     /**
      * Test of saveData method, of class LogManagement.
      * @author Teddie
@@ -26,7 +22,7 @@ public class LogManagementTest extends TestCase {
     @Test
     public void testSaveData() throws Exception {
         System.out.println("saveData");
-        TreeMap<Integer, ArrayList> saveOpinion = new TreeMap<Integer, ArrayList>();
+        TreeMap<Integer, ArrayList<Agent>> saveOpinion = new TreeMap<Integer, ArrayList<Agent>>();
         LogManagement instance = new LogManagement();
 
         Agent a = new Agent();
@@ -36,7 +32,7 @@ public class LogManagementTest extends TestCase {
         saveOpinion.put(2, l);
         instance.saveData(saveOpinion);
 
-        InputStream ips = new FileInputStream("log");
+        InputStream ips = new FileInputStream(LogManagement.LOG_FILENAME);
         InputStreamReader ipsr = new InputStreamReader(ips);
         BufferedReader br = new BufferedReader(ipsr);
         String ligne = br.readLine();
