@@ -1,9 +1,8 @@
 package simulationopinion;
 
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.TreeMap;
 import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
 /**
  * @author Joris Berthelot (joris.berthelot@gmail.com)
@@ -21,45 +20,33 @@ public class AgentTest extends TestCase {
     @Override
     public void setUp() {
         instance = new Agent();
-        assertEquals(0, instance.getOpinion());
         assertEquals(0, instance.getWaitTime());
-        assertEquals(1, instance.getTrustLevel());
+        assertEquals(0, instance.getTrustLevel());
         assertEquals(1, instance.getMoveStep());
-        assertEquals(0, instance.getPerceptionDepth());
+        assertEquals(1, instance.getPerceptionDepth());
         assertTrue(instance.getCoord() instanceof Coord);
     }
 
-    public void testMove() {
-        try {
-            instance.move(12);
-            if(instance.getCoord().x() == 0 && instance.getCoord().y() == 0)
-                fail("Agent don't move");
-        } catch (AgentException ex) {
+    /**
+     * Tests opinion random allocation for new agent
+     */
+    public void testAgentRandomOpinion() {
+        int amount = 250;
+        TreeMap<Integer, Integer> stats = new TreeMap<Integer, Integer>();
+        for (int i = Agent.OPINION_MIN; i <= Agent.OPINION_MAX; i++) {
+            stats.put(i, new Integer(0));
         }
 
-    }
-
-    public void testMoveFail() {
-        try {
-            instance.move(-2);
-            fail("AgentException thrown exception expected!");
-        } catch (AgentException ex) {
+        for (int i = 0; i < amount; i++) {
+            Agent a = new Agent();
+            Integer value = stats.get(a.getOpinion());
+            stats.put(a.getOpinion(), ++value);
+            // System.out.println(stats.get(a.getOpinion()));
         }
 
-    }
-
-    public void testPersuade(){
-        try {
-            Agent a1 = new Agent(5, 1, 5, 5, new Coord(1, 1));
-            a1.setOpinion(1);
-            Agent a2 = new Agent(5, 1, 5, 5, new Coord(1, 2));
-            a2.setOpinion(2);
-            ArrayList<Agent> listAgent = new ArrayList<Agent>();
-            listAgent.add(a2);
-            a1.persuade(listAgent);
-            assertEquals(a1.getOpinion(), a2.getOpinion());
-        } catch (AgentException ex) {
-            Logger.getLogger(AgentTest.class.getName()).log(Level.SEVERE, null, ex);
+        System.out.println("Opinion allocation for " + amount + " agents:");
+        for (int i = Agent.OPINION_MIN; i <= Agent.OPINION_MAX; i++) {
+            System.out.println("Opinion" + i + " => " + stats.get(i) * 100 / amount + "%");
         }
     }
 

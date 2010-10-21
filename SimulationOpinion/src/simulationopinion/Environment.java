@@ -42,10 +42,6 @@ public class Environment {
         }
     }
 
-    public void initListAgent(){
-
-    }
-
     /**
      * Returns an agent list which are near to the given agent
      * @param agent
@@ -114,10 +110,10 @@ public class Environment {
     /**
      * Class runner (main thread)
      * Runs the environment, move agents
-     * TODO Implements agent actions
+     * @param DisplayManagement d
      * FIXME Stop condition to break out the while()
      */
-    public void run(DisplayManagement d) throws EnvironmentException {
+    public void run(DisplayManagement display) throws EnvironmentException {
         try {
             if (2 > this.getNbAgent()) {
                 throw new EnvironmentException("Two agent at least are needed to make the environment running!");
@@ -130,7 +126,7 @@ public class Environment {
                     agent.move(this.getAreaSize());
                     agent.persuade(nearby);
                     this.updateListAgents(nearby);
-                    d.update(this.listAgentsToOpinion);
+                    display.update(this.listAgentsToOpinion);
                 }
             }
         } catch (AgentException e) {
