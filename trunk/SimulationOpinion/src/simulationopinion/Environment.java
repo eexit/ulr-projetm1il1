@@ -1,10 +1,10 @@
 package simulationopinion;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /** 
  * @author Joris Berthelot (joris.berthelot@gmail.com)
@@ -12,6 +12,10 @@ import java.util.logging.Logger;
  */
 public class Environment {
 
+    /**
+     * Interval of millisecond to log the state of application
+     */
+    public final static int LOG_SAVE_INTERVAL = 20000;
     /**
      * Number of agents in the environment
      */
@@ -28,7 +32,18 @@ public class Environment {
      * Agent list
      */
     private ArrayList<Agent> listAgents;
+    /**
+     * Environment running state
+     */
     private boolean running;
+    /**
+     * LogManagement instance
+     */
+    private LogManagement logger;
+    /**
+     * SaveManagement instance
+     */
+    private SaveManagement saver;
 
     /**
      * Constructor
@@ -98,11 +113,11 @@ public class Environment {
 
         // Looks for nearby agents
         for (Agent a : this.getListAgents()) {
-            if (a.getCoord().x() >= topLeft.x() &&
-                    a.getCoord().x() <= bottomRight.x() &&
-                    a.getCoord().y() >= topLeft.y() &&
-                    a.getCoord().y() <= bottomRight.y() &&
-                    !a.equals(agent)) {
+            if (a.getCoord().x() >= topLeft.x()
+                    && a.getCoord().x() <= bottomRight.x()
+                    && a.getCoord().y() >= topLeft.y()
+                    && a.getCoord().y() <= bottomRight.y()
+                    && !a.equals(agent)) {
                 nearAgents.add(a);
                 //  this.getListAgentsToOpinion().get(a.getOpinion()).remove(a);
             }
@@ -116,37 +131,48 @@ public class Environment {
      * @param DisplayManagement d
      * FIXME Stop condition to break out the while()
      */
-    public void run(DisplayManagement display) throws EnvironmentException {
-        display.update(this.listAgentsToOpinion);
-        try {
-            if (2 > this.getNbAgent()) {
-                throw new EnvironmentException("Two agent at least are needed to make the environment running!");
-            }
-            this.running = true;
+    public void run(DisplayManagement display) throws EnvironmentException, AgentException, FileNotFoundException, IOException {
+        if (2 > this.getNbAgent()) {
+            throw new EnvironmentException("At least two agents are needed to make the environment running!");
+        }
 
-            while (this.isRunning()) {
-                ArrayList<Agent> agents = this.getListAgents();
-                Collections.shuffle(agents);
-                for (Agent agent : agents) {
-                    ArrayList<Agent> nearby = this.getNearAgents(agent);
-                    Collections.shuffle(nearby);
-                    agent.move(this.getAreaSize());
-                    for (Agent nearAgent : nearby) {
-                        this.getListAgentsToOpinion().get(nearAgent.getOpinion()).remove(nearAgent);
-                        agent.persuade(nearAgent);
-                        this.updateAgentAllocation(nearAgent);
-                        display.update(this.getListAgentsToOpinion());
-                        // Thread.sleep(50);
-                    }
+        long logtimer = System.currentTimeMillis() + Environment.LOG_SAVE_INTERVAL;
+
+        display.update(this.getListAgentsToOpinion());
+        this.getSaver().save(String.valueOf(this.getAreaSize()));
+        this.getSaver().saveAgent(this.getListAgents());
+        this.getLogger().saveData(this.getListAgentsToOpinion());
+
+        this.running = true;
+        while (this.isRunning()) {
+            ArrayList<Agent> agents = this.getListAgents();
+            Collections.shuffle(agents);
+
+            if (System.currentTimeMillis() >= logtimer) {
+                this.getLogger().saveData(this.getListAgentsToOpinion());
+                logtimer = System.currentTimeMillis() + Environment.LOG_SAVE_INTERVAL;
+            }
+
+            for (Agent agent : agents) {
+                ArrayList<Agent> nearby = this.getNearAgents(agent);
+                Collections.shuffle(nearby);
+                agent.move(this.getAreaSize());
+                this.getSaver().saveMove(agent);
+
+                for (Agent nearAgent : nearby) {
+                    this.getListAgentsToOpinion().get(nearAgent.getOpinion()).remove(nearAgent);
+                    agent.persuade(nearAgent);
+                    this.getSaver().savePersuade(nearAgent);
+                    this.updateAgentAllocation(nearAgent);
+                    display.update(this.getListAgentsToOpinion());
+                    // Thread.sleep(50);
                 }
             }
-        } catch (AgentException e) {
-        // } catch (InterruptedException e) {
         }
     }
 
     /**
-     * Stop the execution of the environment
+     * Stops the execution of the environment
      */
     public void stop() {
         this.running = false;
@@ -221,10 +247,42 @@ public class Environment {
     }
 
     /**
-     * Returns the state of Environment
-     * @return the running
+     * Returns the running state of Environment
+     * @return
      */
     public boolean isRunning() {
-        return running;
+        return this.running;
+    }
+
+    /**
+     * Gets the log manager
+     * @return
+     */
+    public LogManagement getLogger() {
+        return this.logger;
+    }
+
+    /**
+     * Sets the log manager
+     * @param logger
+     */
+    public void setLogger(LogManagement logger) {
+        this.logger = logger;
+    }
+
+    /**
+     * Gets the save manager
+     * @return
+     */
+    public SaveManagement getSaver() {
+        return this.saver;
+    }
+
+    /**
+     * Sets the save manager
+     * @param saver
+     */
+    public void setSaver(SaveManagement saver) {
+        this.saver = saver;
     }
 }
