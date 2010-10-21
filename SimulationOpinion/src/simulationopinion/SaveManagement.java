@@ -89,6 +89,44 @@ public class SaveManagement {
         output.close();
     }
 
+    /*
+     * @param a
+     */
+    void saveAgent(ArrayList<Agent> a) throws IOException{
+        String listAgent = "";
+        for(int i=0;i<a.size();i++){
+            listAgent+=a.get(i).getTrustLevel()+";"
+                    +a.get(i).getMoveStep()+";"
+                    +a.get(i).getPerceptionDepth()+";"
+                    +a.get(i).getWaitTime()+";"
+                    +a.get(i).getCoord().x()+";"
+                    +a.get(i).getCoord().y()+" ";
+    
+        }
+        this.save(listAgent);
+    }
+
+    /*
+     * @param a
+     */
+    void saveMove(Agent a) throws IOException{
+        String move = "M ";
+        move +=a.getIdent()+" "
+                +a.getCoord().x()+" "
+                +a.getCoord().y();
+        this.save(move);
+    }
+
+    /*
+     * @param a
+     */
+    void savePersuade(Agent a) throws IOException{
+        String persuade = "P ";
+        persuade +=a.getIdent()+" "
+                +a.getOpinion();
+        this.save(persuade);
+    }
+
     /**
      * @return the filename
      */
