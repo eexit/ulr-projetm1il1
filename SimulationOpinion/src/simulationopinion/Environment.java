@@ -3,6 +3,8 @@ package simulationopinion;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /** 
  * @author Joris Berthelot (joris.berthelot@gmail.com)
@@ -115,6 +117,7 @@ public class Environment {
      * FIXME Stop condition to break out the while()
      */
     public void run(DisplayManagement display) throws EnvironmentException {
+        display.update(this.listAgentsToOpinion);
         try {
             if (2 > this.getNbAgent()) {
                 throw new EnvironmentException("Two agent at least are needed to make the environment running!");
@@ -133,12 +136,12 @@ public class Environment {
                         agent.persuade(nearAgent);
                         this.updateAgentAllocation(nearAgent);
                         display.update(this.getListAgentsToOpinion());
-                        Thread.sleep(50);
+                        // Thread.sleep(50);
                     }
                 }
             }
         } catch (AgentException e) {
-        } catch (InterruptedException e) {
+        // } catch (InterruptedException e) {
         }
     }
 

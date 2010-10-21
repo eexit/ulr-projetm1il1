@@ -1,9 +1,7 @@
 package simulationopinion;
 
-import java.util.ArrayList;
 import java.util.TreeMap;
 import junit.framework.TestCase;
-import static org.junit.Assert.*;
 
 /**
  * @author Joris Berthelot (joris.berthelot@gmail.com)

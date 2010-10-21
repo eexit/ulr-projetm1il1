@@ -161,6 +161,11 @@ public class Agent implements Comparable {
             long waitOffTime = System.currentTimeMillis() + (this.getWaitTime() * 1000);
             this.addToListAgentNotSpeak(agent, waitOffTime);
             agent.addToListAgentNotSpeak(this, waitOffTime);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                System.err.println(ex.getMessage());
+            }
         }
     }
 
@@ -274,12 +279,13 @@ public class Agent implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        Agent a = (Agent)o;
-        if(this.getIdent() < a.getIdent())
+        Agent a = (Agent) o;
+        if (this.getIdent() < a.getIdent()) {
             return -1;
-        else if(this.getIdent() > a.getIdent())
+        } else if (this.getIdent() > a.getIdent()) {
             return 1;
-        else
+        } else {
             return 0;
+        }
     }
 }
