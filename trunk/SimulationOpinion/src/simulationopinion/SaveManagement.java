@@ -44,12 +44,12 @@ public class SaveManagement {
         String[] contentSort = null;
         ArrayList<Agent> a = new ArrayList<Agent>();
 
-        /*Environment areaSize*/
+        // Environment areaSize
         line = buffer.readLine();
         Environment e = new Environment();
         e.setAreaSize(Integer.parseInt(line));
 
-        /*Agent*/
+        // Agent
         line = buffer.readLine();
         contentSort = line.split(" ");
         for (int i = 0; i < contentSort[0].length() - 6; i++) {
@@ -62,22 +62,20 @@ public class SaveManagement {
         }
         e.setListAgents(a);
 
-        /*action*/
+        // Action
         while ((line = buffer.readLine()) != null) {
             String[] action = line.split(" ");
             ArrayList<Agent> agents = e.getListAgents();
-            // TODO replace by a switch
-            /*move*/
+
+            // Gets the action
             switch ((action[0].charAt(0))) {
-                /*move*/
+                // Move
                 case 'M':
                     agents.get(Integer.parseInt(action[1]) - 1).setCoord(new Coord(Integer.parseInt(action[2]), Integer.parseInt(action[3])));
                     break;
-                /*persuade*/
+                // Persuade
                 case 'P':
                     agents.get(Integer.parseInt(action[1]) - 1).setOpinion(Integer.parseInt(action[2]));
-                    break;
-                default:
                     break;
             }
         }

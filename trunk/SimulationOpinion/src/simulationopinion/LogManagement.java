@@ -41,11 +41,10 @@ public class LogManagement {
      * @throws IOException
      */
     public void saveData(TreeMap<Integer, ArrayList<Agent>> saveOpinion) throws IOException {
-        int max = 0;
+        
         FileWriter fw = new FileWriter(this.filename, true);
         for (Map.Entry<Integer, ArrayList<Agent>> e : saveOpinion.entrySet()) {
             //Write Key
-            max = Math.max(max, e.getValue().size());
             fw.write(e.getKey() + " ");
             //Write Value
             for (Agent agent : e.getValue()) {
@@ -53,11 +52,9 @@ public class LogManagement {
             }
             fw.write("\n");
         }
+        
         //Intialisation last line
-        max = max + 2;
-        for (int i = 0; i <= max; i++) {
-            fw.append("_");
-        }
+            fw.append("=== next save ===");
         fw.write("\n");
         fw.close();
     }

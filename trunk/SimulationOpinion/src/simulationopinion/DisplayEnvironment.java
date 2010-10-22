@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulationopinion;
 
 import java.awt.Color;
@@ -11,8 +7,7 @@ import java.util.TreeMap;
 import javax.swing.JPanel;
 
 /**
- *
- * @author Teddie
+ * @author Teddie Bonnaud
  */
 public class DisplayEnvironment extends JPanel {
 
@@ -33,10 +28,9 @@ public class DisplayEnvironment extends JPanel {
         super.paintComponent(s);
         s.setColor(Color.WHITE);
         s.fillRect(0, 0, this.getWidth(), this.getHeight());
-        for(Agent a : listAgent)
-        {
-        s.setColor(this.listColorToOpinion.get(a.getOpinion()));
-        s.fillOval(a.getCoord().x(), a.getCoord().y(), 5, 5);
+        for (Agent a : listAgent) {
+            s.setColor(this.listColorToOpinion.get(a.getOpinion()));
+            s.fillOval(a.getCoord().x(), a.getCoord().y(), 5, 5);
         }
         /*s.setColor(Color.BLACK);
         s.fillOval(10, 10, 10, 10);*/

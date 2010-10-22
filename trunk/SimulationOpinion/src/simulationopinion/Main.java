@@ -5,9 +5,14 @@ package simulationopinion;
  * @author Joris Berthelot
  */
 public class Main {
-    public static void main(String[] args) {
-        Controller c = new Controller();
-        c.exec();
-    }
 
+    public static void main(String[] args) {
+        try {
+            Controller main = new Controller();
+            main.start();
+            main.join();
+        } catch (InterruptedException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
 }
