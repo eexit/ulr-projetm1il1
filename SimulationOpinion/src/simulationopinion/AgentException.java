@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package simulationopinion;
 
 /**
- * @author Joris Berthelot (joris.berthelot@gmail.com)
+ * @author Joris Berthelot
  */
 public class AgentException extends Exception {
     public AgentException() {

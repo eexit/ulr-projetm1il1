@@ -1,49 +1,75 @@
 package simulationopinion;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JButton;
 
 /**
  * @author Joris Berthelot
- * @author afantou
+ * @author Alexandre Fantou
  */
-public class Controller {
+public class Controller extends Thread implements ActionListener {
+
+    private Environment env;
+    private DisplayManagement view;
+    private ArrayList<Agent> agentsList;
 
     public Controller() {
+        this.agentsList = new ArrayList<Agent>();
+        this.env = new Environment();
+        this.view = new DisplayManagement(this.agentsList, this);
+    }
+
+    @Override
+    public synchronized void run() {
+        try {
+            this.wait();
+            this.env.start();
+        } catch (InterruptedException ex) {
+            System.out.println("Wait fails" + ex.getMessage());
+        }
     }
 
     /**
      * Application runner
      */
-    public void exec() {
+    public void launch() {
         try {
-            ArrayList<Agent> agentsList = new ArrayList<Agent>();
-            Environment env = new Environment();
-            DisplayManagement graphicInterface = new DisplayManagement(agentsList, env);
-
-            while (!graphicInterface.isVisible()) {
-                System.out.print("");
+            for (int i = 0; i < this.view.getNbAgent(); i++) {
+                Agent agent = new Agent(this.view.getTrust(), this.view.getStep(), this.view.getArea(), this.view.getWaitTime(), new Coord(new Random().nextInt(this.view.getDimEnv() + 1), new Random().nextInt(this.view.getDimEnv() + 1)));
+                this.agentsList.add(agent);
             }
 
-            for (int i = 0; i < graphicInterface.getNbAgent(); i++) {
-                Agent agent = new Agent(graphicInterface.getTrust(), graphicInterface.getStep(), graphicInterface.getArea(), graphicInterface.getWaitTime(), new Coord(new Random().nextInt(graphicInterface.getDimEnv() + 1), new Random().nextInt(graphicInterface.getDimEnv() + 1)));
-                agentsList.add(agent);
+            this.env.setAreaSize(this.view.getDimEnv());
+            this.env.setListAgents(this.agentsList);
+            this.env.setView(this.view);
+            this.view.update(this.env.getListAgentsToOpinion());
+            
+            if (null != this.view.getPath()) {
+                this.env.setSaver(new SaveManagement(this.view.getPath()));
             }
-            env.setAreaSize(graphicInterface.getDimEnv());
-            env.setListAgents(agentsList);
+            this.env.setLogger(new LogManagement());
 
-            // TODO graphicInterface.get
-            env.setSaver(new SaveManagement("application.log"));
-            env.setLogger(new LogManagement());
-
-            env.run(graphicInterface);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         } catch (AgentException e) {
             System.err.println(e.getMessage());
-        } catch (EnvironmentException e) {
-            System.err.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public synchronized void actionPerformed(ActionEvent e) {
+        if (((JButton) e.getSource()).getText() == "Ok") {
+            this.launch();
+        }
+        if (((JButton) e.getSource()).getText() == "Start") {
+            this.notifyAll();
+        }
+        if (((JButton) e.getSource()).getText() == "Stop") {
+            this.env.kill();
         }
     }
 }

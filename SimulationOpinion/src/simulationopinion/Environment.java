@@ -1,24 +1,19 @@
 package simulationopinion;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TreeMap;
-import javax.swing.JButton;
 
 /** 
  * @author Joris Berthelot (joris.berthelot@gmail.com)
  * @author Alexandre Coste
  */
-public class Environment implements ActionListener {
+public class Environment extends Thread {
 
     /**
      * Interval of millisecond to log the state of application
      */
-    public final static int LOG_SAVE_INTERVAL = 20000;
+    public final static int LOG_SAVE_INTERVAL = 200;
     /**
      * Number of agents in the environment
      */
@@ -38,7 +33,7 @@ public class Environment implements ActionListener {
     /**
      * Environment running state
      */
-    private boolean running;
+    private volatile boolean running;
     /**
      * LogManagement instance
      */
@@ -47,6 +42,10 @@ public class Environment implements ActionListener {
      * SaveManagement instance
      */
     private SaveManagement saver;
+    /**
+     * View instance
+     */
+    private DisplayManagement view;
 
     /**
      * Constructor
@@ -134,58 +133,71 @@ public class Environment implements ActionListener {
      * @param DisplayManagement d
      * FIXME Stop condition to break out the while()
      */
-    public void run(DisplayManagement display) throws EnvironmentException, AgentException, FileNotFoundException, IOException {
-        if (2 > this.getNbAgent()) {
-            throw new EnvironmentException("At least two agents are needed to make the environment running!");
-        }
-
-        long logtimer = System.currentTimeMillis() + Environment.LOG_SAVE_INTERVAL;
-
-        display.update(this.getListAgentsToOpinion());
-        this.getSaver().save(String.valueOf(this.getAreaSize()));
-        this.getSaver().saveAgent(this.getListAgents());
-        this.getLogger().saveData(this.getListAgentsToOpinion());
-
-        while (!this.isRunning()) {
-        }
-        while (this.isRunning()) {
-            ArrayList<Agent> agents = this.getListAgents();
-            Collections.shuffle(agents);
-
-            if (System.currentTimeMillis() >= logtimer) {
-                this.getLogger().saveData(this.getListAgentsToOpinion());
-                logtimer = System.currentTimeMillis() + Environment.LOG_SAVE_INTERVAL;
+    @Override
+    public void run() {
+        try {
+            this.running = true;
+            
+            if (2 > this.getNbAgent()) {
+                throw new EnvironmentException("At least two agents are needed to make the environment running!");
             }
 
-            for (Agent agent : agents) {
-                ArrayList<Agent> nearby = this.getNearAgents(agent);
-                Collections.shuffle(nearby);
-                agent.move(this.getAreaSize());
-                this.getSaver().saveMove(agent);
+            long logtimer = System.currentTimeMillis() + Environment.LOG_SAVE_INTERVAL;
 
-                for (Agent nearAgent : nearby) {
-                    this.getListAgentsToOpinion().get(nearAgent.getOpinion()).remove(nearAgent);
-                    agent.persuade(nearAgent);
-                    this.getSaver().savePersuade(nearAgent);
-                    this.updateAgentAllocation(nearAgent);
-                    display.update(this.getListAgentsToOpinion());
-                    // Thread.sleep(50);
+            this.view.update(this.getListAgentsToOpinion());
+
+            if (null != this.getSaver()) {
+                this.getSaver().save(String.valueOf(this.getAreaSize()));
+                this.getSaver().saveAgent(this.getListAgents());
+            }
+
+            this.getLogger().saveData(this.getListAgentsToOpinion());
+
+            while (this.running) {
+                ArrayList<Agent> agents = this.getListAgents();
+                Collections.shuffle(agents);
+
+                if (System.currentTimeMillis() >= logtimer) {
+                    this.getLogger().saveData(this.getListAgentsToOpinion());
+                    logtimer = System.currentTimeMillis() + Environment.LOG_SAVE_INTERVAL;
+                }
+
+                for (Agent agent : agents) {
+                    ArrayList<Agent> nearby = this.getNearAgents(agent);
+                    Collections.shuffle(nearby);
+                    
+                    agent.move(this.getAreaSize());
+
+                    if (null != this.getSaver()) {
+                        this.getSaver().saveMove(agent);
+                    }
+
+                    for (Agent nearAgent : nearby) {
+                        this.getListAgentsToOpinion().get(nearAgent.getOpinion()).remove(nearAgent);
+                        agent.persuade(nearAgent);
+                        
+                        if (null != this.getSaver()) {
+                            this.getSaver().savePersuade(nearAgent);
+                        }
+
+                        this.updateAgentAllocation(nearAgent);
+                        this.view.update(this.getListAgentsToOpinion());
+                        
+                        if (!this.running) {
+                            return;
+                        }
+                    }
                 }
             }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
-    }
-
-    /**
-     * Starts the execution of the environment
-     */
-    public void start() {
-        this.running = true;
     }
 
     /**
      * Stops the execution of the environment
      */
-    public void stop() {
+    public void kill() {
         this.running = false;
     }
 
@@ -297,12 +309,11 @@ public class Environment implements ActionListener {
         this.saver = saver;
     }
 
-    public void actionPerformed(ActionEvent e) {
-        if (((JButton) e.getSource()).getText() == "Start") {
-            this.start();
-        }
-        if (((JButton) e.getSource()).getText() == "Stop") {
-            this.stop();
-        }
+    public DisplayManagement getView() {
+        return this.view;
+    }
+
+    public void setView(DisplayManagement view) {
+        this.view = view;
     }
 }
