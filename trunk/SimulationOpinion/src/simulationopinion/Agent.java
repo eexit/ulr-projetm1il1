@@ -6,9 +6,8 @@ import java.util.Random;
 import java.util.TreeMap;
 
 /**
- * @author claatik
- * @author Joris Berthelot (joris.berthelot@gmail.com)
- * @version 1.00
+ * @author Chama Laatik
+ * @author Joris Berthelot
  */
 public class Agent implements Comparable {
 
@@ -112,6 +111,11 @@ public class Agent implements Comparable {
         }
     }
 
+    /**
+     * Moves an agent
+     * @param areaSize
+     * @throws AgentException
+     */
     public void move(int areaSize) throws AgentException {
         if (areaSize <= 0) {
             throw new AgentException("AreaSize must be positive and not equal to zero");
@@ -146,6 +150,11 @@ public class Agent implements Comparable {
         this.setCoord(listMovePossible.get(direction));
     }
 
+    /**
+     * Persuades an agent
+     * @param agent
+     * @throws AgentException
+     */
     public void persuade(Agent agent) throws AgentException {
         TreeMap<Agent, Long> mutedAgents = new TreeMap<Agent, Long>(this.listAgentNotSpeak);
         for (Map.Entry<Agent, Long> e : this.listAgentNotSpeak.entrySet()) {
@@ -155,7 +164,7 @@ public class Agent implements Comparable {
         }
 
         this.listAgentNotSpeak = mutedAgents;
-        
+
         if (agent.getOpinion() - agent.getTrustLevel() <= this.getOpinion() && agent.getOpinion() + agent.getTrustLevel() >= this.getOpinion() && !this.listAgentNotSpeak.containsKey(agent)) {
             agent.setOpinion(this.getOpinion());
             long waitOffTime = System.currentTimeMillis() + (this.getWaitTime() * 1000);
@@ -169,12 +178,18 @@ public class Agent implements Comparable {
         }
     }
 
+    /**
+     * Adds an agent to non-speaking agent list
+     * @param a
+     * @param waitOffTime
+     */
     public void addToListAgentNotSpeak(Agent a, long waitOffTime) {
         this.listAgentNotSpeak.put(a, waitOffTime);
     }
 
     /**
-     * @return the opinion
+     * Gets the opinion
+     * @return
      * @throws AgentException
      */
     public int getOpinion() {
@@ -182,7 +197,8 @@ public class Agent implements Comparable {
     }
 
     /**
-     * @param opinion the opinion to set
+     * Sets the opinion
+     * @param opinion
      * @throws AgentException
      */
     public void setOpinion(int opinion) throws AgentException {
@@ -193,28 +209,32 @@ public class Agent implements Comparable {
     }
 
     /**
-     * @return the waitTime
+     * Gets the agent waiting time
+     * @return
      */
     public int getWaitTime() {
         return this.waitTime;
     }
 
     /**
-     * @param waitTime the waitTime to set
+     * Sets the agent waiting time
+     * @param waitTime
      */
     public void setWaitTime(int waitTime) {
         this.waitTime = waitTime;
     }
 
     /**
-     * @return the trustLevel
+     * Gets the agent trust level
+     * @return
      */
     public int getTrustLevel() {
         return this.trustLevel;
     }
 
     /**
-     * @param trustLevel the trustLevel to set
+     * Sets the agent trust level
+     * @param trustLevel
      * @throws AgentException
      */
     public void setTrustLevel(int trustLevel) throws AgentException {
@@ -225,28 +245,32 @@ public class Agent implements Comparable {
     }
 
     /**
-     * @return the perceptionDepth
+     * Gets the perception depth
+     * @return
      */
     public int getPerceptionDepth() {
         return this.perceptionDepth;
     }
 
     /**
-     * @param perceptionDepth the perceptionDepth to set
+     * Sets the agent perception depth
+     * @param perceptionDepth
      */
     public void setPerceptionDepth(int perceptionDepth) {
         this.perceptionDepth = perceptionDepth;
     }
 
     /**
-     * @return the moveStep
+     * Gets the agent move step
+     * @return
      */
     public int getMoveStep() {
         return this.moveStep;
     }
 
     /**
-     * @param moveStep the moveStep to set
+     * Sets the agent move step
+     * @param moveStep
      * @throws AgentException
      */
     public void setMoveStep(int moveStep) throws AgentException {
@@ -257,26 +281,34 @@ public class Agent implements Comparable {
     }
 
     /**
-     * @return the coord
+     * Gets the agent coord
+     * @return
      */
     public Coord getCoord() {
         return this.coord;
     }
 
     /**
-     * @param c the coord to set
+     * Sets the agent coord
+     * @param c
      */
     public void setCoord(Coord c) {
         this.coord = c;
     }
 
     /**
-     * @return the ident
+     * Gets the agent ident
+     * @return
      */
     public int getIdent() {
         return ident;
     }
 
+    /**
+     * Compares an agent to the current instance
+     * @param o
+     * @return
+     */
     @Override
     public int compareTo(Object o) {
         Agent a = (Agent) o;

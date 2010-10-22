@@ -8,9 +8,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * @author Teddie
- * @author Chama
- * @review Joris Berthelot
+ * @author Teddie Bonnaud
+ * @author Chama Laatik
  */
 public class LogManagement {
 
@@ -54,7 +53,7 @@ public class LogManagement {
         }
         
         //Intialisation last line
-            fw.append("=== next save ===");
+        fw.append("=== next save ===");
         fw.write("\n");
         fw.close();
     }

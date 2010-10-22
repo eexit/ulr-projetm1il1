@@ -1,27 +1,20 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulationopinion;
 
 import java.awt.Point;
 
 /**
- *
- * @author claatik
+ * @author Chama Laatik
  */
 public class Coord extends Point {
-    /* ------------- CONSTRUCTORS ------------------ */
 
-    /** Constructs and initializes a point at the origin (0,0) of the coordinate space.
-     * @author claatik
+    /**
+     * Constructor
      */
     public Coord() {
         super();
     }
 
     /** Constructs and initializes a point at the specified (x, y) location in the coordinate space.
-     * @author claatik
      * @param x
      * @param y
      */
@@ -31,7 +24,6 @@ public class Coord extends Point {
 
     /**
      * Returns the x coordinate of the point in integer value.
-     * @author claatik
      * @return the x coordinate
      */
     public int x() {
@@ -40,7 +32,6 @@ public class Coord extends Point {
 
     /**
      * Returns the y coordinate of the point in integer value.
-     * @author claatik
      * @return the y coordinate
      */
     public int y() {
@@ -48,7 +39,7 @@ public class Coord extends Point {
     }
 
     /**
-     * @author claatik
+     * Sets agent coord
      * @param c the coord to set
      */
     public void setCoord(Coord c) {
@@ -56,7 +47,7 @@ public class Coord extends Point {
     }
 
     /**
-     * @author claatik
+     * Sets agent x coord
      * @param x to set
      */
     public void setX(int x) {
@@ -64,7 +55,7 @@ public class Coord extends Point {
     }
 
     /**
-     * @author claatik
+     * Sets agent y coord
      * @param y to set
      */
     public void setY(int y) {

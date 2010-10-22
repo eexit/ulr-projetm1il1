@@ -1,25 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulationopinion;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import junit.framework.TestCase;
-import org.junit.Test;
 
 /**
- * @author Teddie
+ * @author Teddie Bonnaud
  */
 public class LogManagementTest extends TestCase {
     /**
      * Test of saveData method, of class LogManagement.
-     * @author Teddie
-     * @author Chama
      */
-    @Test
     public void testSaveData() throws Exception {
         System.out.println("saveData");
         TreeMap<Integer, ArrayList<Agent>> saveOpinion = new TreeMap<Integer, ArrayList<Agent>>();
@@ -38,13 +30,11 @@ public class LogManagementTest extends TestCase {
         String ligne = br.readLine();
         String[] sOpinion = ligne.split(" ");
         int i = Integer.parseInt(sOpinion[0]);
-        assertEquals(2,i);
-        String[] sAgent=ligne.split("_");
-        for(int j=1;i<sAgent.length;i++){
-            i=Integer.parseInt(sAgent[j]);
-            assertEquals(2,i);
+        assertEquals(2, i);
+        String[] sAgent = ligne.split("_");
+        for (int j = 1; i < sAgent.length; i++) {
+            i = Integer.parseInt(sAgent[j]);
+            assertEquals(2, i);
         }
-
-
     }
 }

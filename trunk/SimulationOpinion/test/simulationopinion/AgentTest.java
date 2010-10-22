@@ -4,7 +4,7 @@ import java.util.TreeMap;
 import junit.framework.TestCase;
 
 /**
- * @author Joris Berthelot (joris.berthelot@gmail.com)
+ * @author Joris Berthelot
  */
 public class AgentTest extends TestCase {
 

@@ -21,7 +21,7 @@ public class SaveManagement {
     private String filename;
 
     /**
-     *      *
+     * Constructor
      * @param fileName
      */
     public SaveManagement(String fileName) {
@@ -29,13 +29,15 @@ public class SaveManagement {
     }
 
     /**
-     * Loads a saved application log
+     * Loads a saved application log (not yet implemented)
+     * @TODO update method since r34 commit (RC1)
      * @param filename
      * @throws FileNotFoundException
      * @throws IOException
      * @throws AgentException
      */
     public void load(String filename) throws FileNotFoundException, IOException, AgentException {
+        /*
         FileInputStream file = new FileInputStream(filename);
         InputStreamReader input = new InputStreamReader(file);
         BufferedReader buffer = new BufferedReader(input);
@@ -53,33 +55,34 @@ public class SaveManagement {
         line = buffer.readLine();
         contentSort = line.split(" ");
         for (int i = 0; i < contentSort[0].length() - 6; i++) {
-            String[] agents = contentSort[0].split(";");
-            a.add(new Agent(Integer.parseInt(agents[0]),
-                    Integer.parseInt(agents[1]),
-                    Integer.parseInt(agents[2]),
-                    Integer.parseInt(agents[3]),
-                    new Coord(Integer.parseInt(agents[4]), Integer.parseInt(agents[5]))));
+        String[] agents = contentSort[0].split(";");
+        a.add(new Agent(Integer.parseInt(agents[0]),
+        Integer.parseInt(agents[1]),
+        Integer.parseInt(agents[2]),
+        Integer.parseInt(agents[3]),
+        new Coord(Integer.parseInt(agents[4]), Integer.parseInt(agents[5]))));
         }
         e.setListAgents(a);
 
         // Action
         while ((line = buffer.readLine()) != null) {
-            String[] action = line.split(" ");
-            ArrayList<Agent> agents = e.getListAgents();
+        String[] action = line.split(" ");
+        ArrayList<Agent> agents = e.getListAgents();
 
-            // Gets the action
-            switch ((action[0].charAt(0))) {
-                // Move
-                case 'M':
-                    agents.get(Integer.parseInt(action[1]) - 1).setCoord(new Coord(Integer.parseInt(action[2]), Integer.parseInt(action[3])));
-                    break;
-                // Persuade
-                case 'P':
-                    agents.get(Integer.parseInt(action[1]) - 1).setOpinion(Integer.parseInt(action[2]));
-                    break;
-            }
+        // Gets the action
+        switch ((action[0].charAt(0))) {
+        // Move
+        case 'M':
+        agents.get(Integer.parseInt(action[1]) - 1).setCoord(new Coord(Integer.parseInt(action[2]), Integer.parseInt(action[3])));
+        break;
+        // Persuade
+        case 'P':
+        agents.get(Integer.parseInt(action[1]) - 1).setOpinion(Integer.parseInt(action[2]));
+        break;
+        }
         }
         input.close();
+         */
     }
 
     /**
@@ -105,11 +108,11 @@ public class SaveManagement {
         String listAgent = new String();
         for (int i = 0; i < a.size(); i++) {
             listAgent += a.get(i).getTrustLevel() + ";"
-                + a.get(i).getMoveStep() + ";"
-                + a.get(i).getPerceptionDepth() + ";"
-                + a.get(i).getWaitTime() + ";"
-                + a.get(i).getCoord().x() + ";"
-                + a.get(i).getCoord().y() + " ";
+                    + a.get(i).getMoveStep() + ";"
+                    + a.get(i).getPerceptionDepth() + ";"
+                    + a.get(i).getWaitTime() + ";"
+                    + a.get(i).getCoord().x() + ";"
+                    + a.get(i).getCoord().y() + " ";
         }
         this.save(listAgent);
     }

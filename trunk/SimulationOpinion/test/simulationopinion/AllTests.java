@@ -9,6 +9,8 @@ public class AllTests {
         suite.addTestSuite(AgentTest.class);
         suite.addTestSuite(CoordTest.class);
         suite.addTestSuite(EnviromnentTest.class);
+        suite.addTestSuite(LogManagementTest.class);
+        // suite.addTestSuite(SaveManagementTest.class);
         return suite;
     }
 }

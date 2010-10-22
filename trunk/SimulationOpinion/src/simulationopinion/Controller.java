@@ -13,23 +13,38 @@ import javax.swing.JButton;
  */
 public class Controller extends Thread implements ActionListener {
 
+    /**
+     * Environment instance
+     */
     private Environment env;
+    /**
+     * View instance
+     */
     private DisplayManagement view;
+    /**
+     * Agent list
+     */
     private ArrayList<Agent> agentsList;
 
+    /**
+     * Constructor
+     */
     public Controller() {
         this.agentsList = new ArrayList<Agent>();
         this.env = new Environment();
         this.view = new DisplayManagement(this.agentsList, this);
     }
 
+    /**
+     * Thread runner
+     */
     @Override
     public synchronized void run() {
         try {
             this.wait();
             this.env.start();
         } catch (InterruptedException ex) {
-            System.out.println("Wait fails" + ex.getMessage());
+            System.err.println(ex);
         }
     }
 
@@ -47,10 +62,11 @@ public class Controller extends Thread implements ActionListener {
             this.env.setListAgents(this.agentsList);
             this.env.setView(this.view);
             this.view.update(this.env.getListAgentsToOpinion());
-            
+
             if (null != this.view.getPath()) {
                 this.env.setSaver(new SaveManagement(this.view.getPath()));
             }
+
             this.env.setLogger(new LogManagement());
 
         } catch (IOException e) {
@@ -60,6 +76,10 @@ public class Controller extends Thread implements ActionListener {
         }
     }
 
+    /**
+     * Button event listener receiver
+     * @param e
+     */
     @Override
     public synchronized void actionPerformed(ActionEvent e) {
         if (((JButton) e.getSource()).getText() == "Ok") {
