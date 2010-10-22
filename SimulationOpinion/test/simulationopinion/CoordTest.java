@@ -3,10 +3,14 @@ package simulationopinion;
 import junit.framework.TestCase;
 
 /**
- * @author claatik
+ * @author Chama Laatik
+ * @author Joris Berthelot
  */
 public class CoordTest extends TestCase
 {
+    /**
+     * Coord test instance
+     */
     private static Coord instance;
 
     /**

@@ -1,11 +1,12 @@
 package simulationopinion;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TreeMap;
 
 /** 
- * @author Joris Berthelot (joris.berthelot@gmail.com)
+ * @author Joris Berthelot
  * @author Alexandre Coste
  */
 public class Environment extends Thread {
@@ -13,7 +14,7 @@ public class Environment extends Thread {
     /**
      * Interval of millisecond to log the state of application
      */
-    public final static int LOG_SAVE_INTERVAL = 200;
+    public final static int LOG_SAVE_INTERVAL = 20000;
     /**
      * Number of agents in the environment
      */
@@ -121,7 +122,6 @@ public class Environment extends Thread {
                     && a.getCoord().y() <= bottomRight.y()
                     && !a.equals(agent)) {
                 nearAgents.add(a);
-                //  this.getListAgentsToOpinion().get(a.getOpinion()).remove(a);
             }
         }
         return nearAgents;
@@ -130,14 +130,12 @@ public class Environment extends Thread {
     /**
      * Class runner (main thread)
      * Runs the environment, move agents
-     * @param DisplayManagement d
-     * FIXME Stop condition to break out the while()
      */
     @Override
     public void run() {
         try {
             this.running = true;
-            
+
             if (2 > this.getNbAgent()) {
                 throw new EnvironmentException("At least two agents are needed to make the environment running!");
             }
@@ -162,35 +160,45 @@ public class Environment extends Thread {
                     logtimer = System.currentTimeMillis() + Environment.LOG_SAVE_INTERVAL;
                 }
 
+                // For all agents
                 for (Agent agent : agents) {
                     ArrayList<Agent> nearby = this.getNearAgents(agent);
                     Collections.shuffle(nearby);
-                    
+
                     agent.move(this.getAreaSize());
 
+                    // Saves data
                     if (null != this.getSaver()) {
                         this.getSaver().saveMove(agent);
                     }
 
+                    // For all nears agents
                     for (Agent nearAgent : nearby) {
                         this.getListAgentsToOpinion().get(nearAgent.getOpinion()).remove(nearAgent);
                         agent.persuade(nearAgent);
-                        
+
+                        // Saves data
                         if (null != this.getSaver()) {
                             this.getSaver().savePersuade(nearAgent);
                         }
 
+                        // Updates data and environment
                         this.updateAgentAllocation(nearAgent);
                         this.view.update(this.getListAgentsToOpinion());
-                        
+
+                        // Stop condition
                         if (!this.running) {
                             return;
                         }
                     }
                 }
             }
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
+        } catch (AgentException e) {
+            System.err.println(e.getMessage());
+        } catch (EnvironmentException e) {
+            System.err.println(e.getMessage());
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
     }
 
@@ -309,10 +317,18 @@ public class Environment extends Thread {
         this.saver = saver;
     }
 
+    /**
+     * Gets the view
+     * @return
+     */
     public DisplayManagement getView() {
         return this.view;
     }
 
+    /**
+     * Sets the view
+     * @param view
+     */
     public void setView(DisplayManagement view) {
         this.view = view;
     }

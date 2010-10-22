@@ -1,13 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * DisplayManagement.java
- *
- * Created on 19 oct. 2010, 12:58:09
- */
 package simulationopinion;
 
 import java.awt.Color;
@@ -26,21 +16,48 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.data.general.DefaultPieDataset;
 
-/**
- *
- * @author Teddie
+/*
+ * @author Teddie Bonnaud
  */
 public class DisplayManagement extends javax.swing.JFrame {
 
+    /**
+     * Pie chart
+     */
     private DefaultPieDataset data;
+
+    /**
+     * Path of save filename
+     */
     private String pathSave;
+
+    /**
+     * Path of load filename
+     */
     private String pathLoad;
+    /**
+     * List of agent per color
+     */
     public TreeMap<Integer, Color> listColorToOpinion;
+    /**
+     * Color label
+     */
     private ArrayList<JLabel> listLabel;
+    /**
+     * Environnement display
+     */
     private DisplayEnvironment dispEnv;
+
+    /**
+     * Main application window
+     */
     private JFrame Display;
 
-    /** Creates new form DisplayManagement */
+    /**
+     * Constructor
+     * @param listAgent
+     * @param controller
+     */
     public DisplayManagement(ArrayList<Agent> listAgent, Controller controller) {
         initComponents();
         this.setVisible(false);
@@ -59,7 +76,6 @@ public class DisplayManagement extends javax.swing.JFrame {
         Display.setResizable(false);
         Display.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         Display.setTitle("Environnement");
-
         Display.setContentPane(dispEnv);
         listLabel = new ArrayList<JLabel>();
         listLabel.add(jLabelNbOpinion0);
@@ -88,7 +104,6 @@ public class DisplayManagement extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     /**
      * Initialization Color
-     * @ author Alexandre C, Teddie
      */
     private void InitialisationColor() {
         listColorToOpinion = new TreeMap<Integer, Color>();
@@ -106,7 +121,6 @@ public class DisplayManagement extends javax.swing.JFrame {
 
     /**
      * Initialization of Pie Plot
-     * @ author Alexandre F, Teddie
      */
     private void InitialisationPiePlot() {
         data = new DefaultPieDataset();
@@ -125,7 +139,7 @@ public class DisplayManagement extends javax.swing.JFrame {
         PiePlot3D plot = (PiePlot3D) g.getPlot();
         plot.setForegroundAlpha((float) 0.6);
         for (Map.Entry<Integer, Color> e : listColorToOpinion.entrySet()) {
-            plot.setSectionPaint("Opinion " + e.getKey(), e.getValue());
+            plot.setSectionPaint("Opinion" + e.getKey(), e.getValue());
         }
         BoxLayout Box = new BoxLayout(jPanelGraph, BoxLayout.PAGE_AXIS);
         jPanelGraph.setLayout(Box);
@@ -133,7 +147,7 @@ public class DisplayManagement extends javax.swing.JFrame {
     }
 
     /**
-     * @author Teddie
+     * Updates in real time the main window
      * @param listAgentToOpinion
      */
     public void update(TreeMap<Integer, ArrayList<Agent>> listAgentToOpinion) {
@@ -146,7 +160,7 @@ public class DisplayManagement extends javax.swing.JFrame {
     }
 
     /**
-     * @author Alexandre C, Teddie
+     * Update configuration sliders
      * @param j
      * @param l
      */
@@ -154,32 +168,52 @@ public class DisplayManagement extends javax.swing.JFrame {
         Integer tmp = j.getValue();
         l.setText(tmp.toString());
     }
-    //--------------------GETTER FOR SIMULATION-----------------//
-
+    /**
+     * Gets the number of agents
+     * @return
+     */
     public int getNbAgent() {
         return jSliderNbAgent.getValue();
     }
-
+    /**
+     * Gets the waiting time
+     * @return
+     */
     public int getWaitTime() {
         return jSliderWaitTime.getValue();
     }
-
+    /**
+     * Gets the environment size
+     * @return
+     */
     public int getDimEnv() {
         return jSliderDimEnv.getValue();
     }
-
+    /**
+     * Gets the perception depth value
+     * @return
+     */
     public int getArea() {
         return jSliderArea.getValue();
     }
-
+    /**
+     * Gets the move step
+     * @return
+     */
     public int getStep() {
         return jSliderStep.getValue();
     }
-
+    /**
+     * Gets the trust level
+     * @return
+     */
     public int getTrust() {
         return jSliderTrust.getValue();
     }
-
+    /**
+     * Gets the save filename path
+     * @return
+     */
     public String getPath() {
         return this.pathSave;
     }
@@ -427,58 +461,63 @@ public class DisplayManagement extends javax.swing.JFrame {
         jPanelWelcomeLayout.setHorizontalGroup(
             jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelWelcomeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelWelcomeLayout.createSequentialGroup()
-                        .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelWaitTime)
-                            .addComponent(jLabelInitnbAgent))
-                        .addGap(109, 109, 109)
-                        .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSliderNbAgent, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                            .addComponent(jSliderWaitTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                            .addComponent(jSliderDimEnv, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                            .addComponent(jSliderArea, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                            .addComponent(jSliderStep, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                            .addComponent(jSliderTrust, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)))
-                    .addGroup(jPanelWelcomeLayout.createSequentialGroup()
-                        .addComponent(jLabelEnvDim)
-                        .addGap(287, 287, 287))
-                    .addGroup(jPanelWelcomeLayout.createSequentialGroup()
-                        .addComponent(jLabelInteraction)
-                        .addGap(375, 375, 375))
-                    .addGroup(jPanelWelcomeLayout.createSequentialGroup()
-                        .addComponent(jLabelPas)
-                        .addGap(362, 362, 362))
-                    .addGroup(jPanelWelcomeLayout.createSequentialGroup()
-                        .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTrust)
-                            .addGroup(jPanelWelcomeLayout.createSequentialGroup()
-                                .addComponent(jCheckBoxSave)
-                                .addGap(112, 112, 112)
-                                .addComponent(jButtonOk, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonLoad1)))
-                        .addGap(7, 7, 7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelSliderDImEnv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelSliderTrust, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelSliderStep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelSliderArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelSliderWaitTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelSlideNbAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(43, Short.MAX_VALUE))
-            .addGroup(jPanelWelcomeLayout.createSequentialGroup()
                 .addGap(125, 125, 125)
                 .addComponent(jLabelInfo)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
+            .addGroup(jPanelWelcomeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelWelcomeLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jCheckBoxSave)
+                        .addContainerGap())
+                    .addGroup(jPanelWelcomeLayout.createSequentialGroup()
+                        .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelWelcomeLayout.createSequentialGroup()
+                                .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelWaitTime)
+                                    .addComponent(jLabelInitnbAgent))
+                                .addGap(109, 109, 109)
+                                .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jSliderNbAgent, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                                    .addComponent(jSliderWaitTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                                    .addComponent(jSliderDimEnv, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                                    .addComponent(jSliderArea, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                                    .addComponent(jSliderStep, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                                    .addComponent(jSliderTrust, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)))
+                            .addGroup(jPanelWelcomeLayout.createSequentialGroup()
+                                .addComponent(jLabelEnvDim)
+                                .addGap(287, 287, 287))
+                            .addGroup(jPanelWelcomeLayout.createSequentialGroup()
+                                .addComponent(jLabelInteraction)
+                                .addGap(375, 375, 375))
+                            .addGroup(jPanelWelcomeLayout.createSequentialGroup()
+                                .addComponent(jLabelPas)
+                                .addGap(362, 362, 362))
+                            .addGroup(jPanelWelcomeLayout.createSequentialGroup()
+                                .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelTrust)
+                                    .addGroup(jPanelWelcomeLayout.createSequentialGroup()
+                                        .addGap(293, 293, 293)
+                                        .addComponent(jButtonOk, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonLoad1)))
+                                .addGap(7, 7, 7)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelSliderDImEnv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelSliderTrust, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelSliderStep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelSliderArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelSliderWaitTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelSlideNbAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(52, Short.MAX_VALUE))))
         );
         jPanelWelcomeLayout.setVerticalGroup(
             jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelWelcomeLayout.createSequentialGroup()
                 .addComponent(jLabelInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSliderNbAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelInitnbAgent)
@@ -509,11 +548,12 @@ public class DisplayManagement extends javax.swing.JFrame {
                         .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelTrust)
                             .addComponent(jSliderTrust, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(66, 66, 66)
-                        .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBoxSave)
-                            .addComponent(jButtonOk)
-                            .addComponent(jButtonLoad1)))
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButtonOk)
+                                .addComponent(jButtonLoad1))
+                            .addComponent(jCheckBoxSave)))
                     .addComponent(jLabelSliderTrust))
                 .addGap(28, 28, 28))
         );
@@ -531,8 +571,8 @@ public class DisplayManagement extends javax.swing.JFrame {
             jFrameWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFrameWelcomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         jFileChooserSave.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
@@ -650,6 +690,31 @@ public class DisplayManagement extends javax.swing.JFrame {
             .addGroup(jPanelStatLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatLayout.createSequentialGroup()
+                            .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelOpinion0)
+                                .addComponent(jLabelNbOpinion0, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelOpinion4)
+                                .addComponent(jLabelNbOpinion4))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelOpinion8)
+                                .addComponent(jLabelNbOpinion8)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatLayout.createSequentialGroup()
+                            .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelOpinion1)
+                                .addComponent(jLabelNbOpinion1))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelOpinion5)
+                                .addComponent(jLabelNbOpinion5))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelOpinion9)
+                                .addComponent(jLabelNbOpinion9))))
                     .addGroup(jPanelStatLayout.createSequentialGroup()
                         .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelNbOpinion2)
@@ -666,35 +731,7 @@ public class DisplayManagement extends javax.swing.JFrame {
                         .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelOpinion7)
                             .addComponent(jLabelNbOpinion7))))
-                .addContainerGap(54, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelOpinion0)
-                    .addComponent(jLabelNbOpinion0, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelOpinion4)
-                    .addComponent(jLabelNbOpinion4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelOpinion8)
-                    .addComponent(jLabelNbOpinion8))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStatLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelOpinion1)
-                    .addComponent(jLabelNbOpinion1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelOpinion5)
-                    .addComponent(jLabelNbOpinion5))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelOpinion9)
-                    .addComponent(jLabelNbOpinion9))
-                .addContainerGap())
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanelAction.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

@@ -11,18 +11,36 @@ import javax.swing.JPanel;
  */
 public class DisplayEnvironment extends JPanel {
 
+    /**
+     * List of agents
+     */
     private ArrayList<Agent> listAgent;
+    /**
+     * List of agent allocation per color
+     */
     private TreeMap<Integer, Color> listColorToOpinion;
 
+    /**
+     * Constructor
+     */
     public DisplayEnvironment() {
     }
 
+    /**
+     * Constructor with given parameters
+     * @param listAgent
+     * @param listColorToOpinion
+     */
     public DisplayEnvironment(ArrayList<Agent> listAgent, TreeMap<Integer, Color> listColorToOpinion) {
         super();
         this.listAgent = listAgent;
         this.listColorToOpinion = listColorToOpinion;
     }
 
+    /**
+     * Paints a component
+     * @param s
+     */
     @Override
     public void paintComponent(Graphics s) {
         super.paintComponent(s);
@@ -32,7 +50,5 @@ public class DisplayEnvironment extends JPanel {
             s.setColor(this.listColorToOpinion.get(a.getOpinion()));
             s.fillOval(a.getCoord().x(), a.getCoord().y(), 5, 5);
         }
-        /*s.setColor(Color.BLACK);
-        s.fillOval(10, 10, 10, 10);*/
     }
 }

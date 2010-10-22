@@ -15,4 +15,5 @@ public class SaveManagementTest extends TestCase {
         assertEquals("test.log", sm.getFilename());
     }
 
+
 }
