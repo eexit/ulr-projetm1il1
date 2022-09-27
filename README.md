@@ -3,8 +3,8 @@
 *Importé de Google Code / SVN*
 
 ## Auteurs
- - Alexandre Fantou fanta759@gmail.com
- - Joris Berthelot admin@eexit.net
- - Teddie Bonnaud teddieb26@gmail.com
- - Alexandre Coste coste.alex84@gmail.com
- - Chama Laatik chama.laatik@gmail.com
+ - Alexandre Fantou
+ - Joris Berthelot
+ - Teddie Bonnaud
+ - Alexandre Coste
+ - Chama Laatik
